@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Kanit&family=Roboto:wght@100&display=swap');
+
+
+.my-btn {
+    @apply bg-[#fad932] py-2 px-5 hover:bg-inherit hover:text-[#fad932] hover:border-[#fad932] hover:border rounded-full text-black;
+}
+
+.active{
+    @apply tracking-wide transition-colors duration-300 bg-[#fad932] text-black bg-opacity-80
+  }
+  
+.default{
+    @apply tracking-wide transition-colors duration-200 bg-inherit
+  }
