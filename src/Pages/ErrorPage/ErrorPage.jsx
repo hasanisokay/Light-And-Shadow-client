@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useRouteError } from 'react-router-dom';
-import errorLottieFile from "../assets/jsonLottieFiles/error.json"
+import errorLottieFile from "../../assets/error.json"
 import Lottie from "lottie-react";
 const ErrorPage = () => {
     const {error, status} = useRouteError()
