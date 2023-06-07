@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className='py-40'>
               <Helmet>
                 <title>Light & Shadow | Dashboard</title>
             </Helmet>
