@@ -66,10 +66,11 @@ const Gallery = () => {
     return (
         <div>
             <div className="text-white flex  flex-col items-end">
-                <div className="lg:w-[40%] lg:text-center lg:-mb-36 mt-10 mx-2">
+                <div className="lg:w-[40%] lg:text-start lg:-mb-36 mt-10 mx-2">
                     <h3 className="font-poppins font-bold text-3xl">Our Gallery</h3>
                     <h4 className=" font-semibold text-lg">A Visual Journey Through Extraordinary Moments</h4>
                     <p className="  font-roboto">Discover a mesmerizing collection of extraordinary moments frozen in time, where each image tells a unique story. From breathtaking landscapes to candid portraits, our gallery showcases the artistry and skill nurtured within our photography school.</p>
+                    <button className="my-btn mt-4">Learn More</button>
                 </div>
             </div>
             <div className="w-full my-10 md:my-32">
@@ -80,7 +81,7 @@ const Gallery = () => {
                     <Swiper
                         breakpoints={breakpoints}
                         autoplay={{
-                            delay: 3000,
+                            delay: 1500,
                             disableOnInteraction: false,
                         }}
 
@@ -124,7 +125,7 @@ const Gallery = () => {
                     <Swiper
                         breakpoints={breakpoints2}
                         autoplay={{
-                            delay: 3000,
+                            delay: 500,
                             disableOnInteraction: false,
                         }}
 
@@ -168,7 +169,7 @@ const Gallery = () => {
                     <Swiper
                         breakpoints={breakpoints3}
                         autoplay={{
-                            delay: 3000,
+                            delay: 1000,
                             disableOnInteraction: false,
                         }}
 
