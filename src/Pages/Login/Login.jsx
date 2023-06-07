@@ -1,55 +1,49 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
+import Lottie from "lottie-react";
+import lottieLogin from "../../assets/loginJson.json"
+import { useForm } from "react-hook-form";
+import { FaEye } from 'react-icons/fa';
+
 const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const previousClickedPath = location.state?.pathname || "/"
     const { signIn } = useContext(AuthContext)
-    useEffect(() => {
-        loadCaptchaEnginge(6);
-    }, [])
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const [disable, setDisable] = useState(false)
-    const captchaRef = useRef(null)
+    const [passwordType, setPasswordType] = useState("password")
 
-    const handleLogin = (e) => {
-        e.preventDefault()
-        if (disable) {
-            return
-        }
-        const form = e.target;
-        const email = form.email.value
-        const password = form.password.value
-        console.log(email, password);
-        signIn(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                Swal.fire({
-                    title: 'User Log in Successful',
-                    showClass: {
-                      popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                      popup: 'animate__animated animate__fadeOutUp'
-                    }
-                  })
-                  navigate(previousClickedPath, {replace: true})
 
-            })
-    }
-    const handleValidateCaptcha = (e) => {
-        const user_captcha_value = e.target.value;
-        if (validateCaptcha(user_captcha_value)) {
-            setDisable(false)
-        }
-        else {
-            setDisable(true)
-        }
+    const onSubmit = (data) => {
+        console.log(data);
+        // if (disable) {
+        //     return
+        // }
+        // const form = e.target;
+        // const email = form.email.value
+        // const password = form.password.value
+        // console.log(email, password);
+        // signIn(email, password)
+        //     .then(result => {
+        //         const user = result.user;
+        //         console.log(user);
+        //         Swal.fire({
+        //             title: 'User Log in Successful',
+        //             showClass: {
+        //                 popup: 'animate__animated animate__fadeInDown'
+        //             },
+        //             hideClass: {
+        //                 popup: 'animate__animated animate__fadeOutUp'
+        //             }
+        //         })
+        //         navigate(previousClickedPath, { replace: true })
+
+        //     })
     }
 
     return (
@@ -57,43 +51,45 @@ const Login = () => {
             <Helmet>
                 <title>Light & Shadow | Sign in</title>
             </Helmet>
-            <div className="hero min-h-screen bg-base-200">
+            <div className="hero min-h-screen bg-[#031003]">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center md:w-1/2 lg:text-left">
-                        <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <Lottie animationData={lottieLogin} className='w-full' />
                     </div>
-                    <div className="card md:w-1/2 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form className="card-body" onSubmit={handleLogin}>
+                    <div className="card  w-full max-w-sm shadow-2xl bg-[#d7d2b7]">
+                        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+                            <h3 className='font-poppins font-semibold text-2xl text-center'>Login Please</h3>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="text" name='email' placeholder="email" className="input input-bordered" />
+                                <input type="email" name='email' {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
+                                {errors.email && <span className='text-red-600'>Email is required</span>}
                             </div>
-                            <div className="form-control">
+                            <div className="form-control flex">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="password" className="input input-bordered" />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                                <input type={passwordType} name='password' {...register("password", {
+                                    required: true,
+                                    minLength: 6,
+                                    maxLength: 20,
+                                    pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z])/
+                                })} placeholder="password" className=" w-full input input-bordered" />
+                                <div className='flex mt-2 items-center gap-4 mx-2'>
+                                    <FaEye className='cursor-pointer' onClick={() => passwordType === "password" ? setPasswordType("text") : setPasswordType("password")} />
+                                    <p className='text-xs font-roboto cursor-pointer' onClick={() => passwordType === "password" ? setPasswordType("text") : setPasswordType("password")}>{passwordType === "password" ? "Show Password" : "Hide Password"} </p>
+                                </div>
+                                {errors.password?.type === "minLength" && <span className='text-red-600'>Password must be 6 character long</span>}
+                                {errors.password?.type === "maxLength" && <span className='text-red-600'>Maximum password length is 20 character</span>}
+                                {errors.password?.type === "pattern" && <span className='text-red-600'>Password Must have one number, uppercse, lowercase and a special character</span>}
                             </div>
-                            <div className="form-control">
-                                <label className="label">
 
-                                    <LoadCanvasTemplate />
-
-                                </label>
-                                <input type="text" name='captcha' onBlur={handleValidateCaptcha} ref={captchaRef} placeholder="type captcha" className="input input-bordered" />
-                                {/* <button className='btn btn-outline btn-xs mt-2'>Validate</button> */}
-                            </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" disabled={disable} type="submit" value="login" />
+                                <input className="bg-[#031003] py-1 rounded-full  text-white cursor-pointer" disabled={disable} type="submit" value="Login" />
                             </div>
                         </form>
-                        <p><small>New Here? <Link to="/signup">Create an account</Link> </small></p>
+                        <p className='text-center'><small className='font-semibold text-lg'>New Here? <Link to="/signup" className='text-blue-600'>Create an account</Link> </small></p>
                         <SocialLogin></SocialLogin>
 
                     </div>

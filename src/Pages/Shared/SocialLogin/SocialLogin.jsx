@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {FaGoogle} from "react-icons/fa"
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
+import googleIcon from "../../../assets/google-icon.png"
 const SocialLogin = () => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -25,20 +26,18 @@ const SocialLogin = () => {
                 .then(res => res.json())
                 .then(() => {
                 navigate(previousClickedPath, {replace: true})
-                })
-
-
-
-
-           
+                })           
         })
     }
 
     return (
         <div>
-            <div className="divider">
+            <div className="divider font-semibold"> Or
             </div>
-            <div className='text-center my-4'><FaGoogle onClick={handleGoogleSignIn} className='btn border-0 btn-circle btn-outline'/></div>
+                <div onClick={handleGoogleSignIn} className='flex items-center bg-[#031003] py-1 rounded-full cursor-pointer  text-white justify-center my-4 border-0 mx-6'>
+                    <img src={googleIcon} alt="" className='h-6' />
+                    <p>Cointinue with Google</p>
+                    </div>
         </div>
     );
 };

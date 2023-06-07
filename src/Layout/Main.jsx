@@ -12,7 +12,7 @@ const Main = () => {
         <div className='bg-[#031003]'>
             <Navbar></Navbar>
             <Outlet></Outlet>
-<Footer></Footer>
+            <Footer></Footer>
         </div>
     );
 };
