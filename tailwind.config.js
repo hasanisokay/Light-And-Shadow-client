@@ -11,7 +11,8 @@ export default {
     fontFamily: {
       kanit: ['Kanit', 'sans-serif'],
       julious: ['Julius Sans One', 'sans-serif'],
-      roboto:['Roboto', 'sans-serif']
+      roboto:['Roboto', 'sans-serif'],
+      poppins:['Poppins', 'sans-serif']
     },
   },
 }

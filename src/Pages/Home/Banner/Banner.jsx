@@ -1,5 +1,5 @@
 import React from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
 import bannerImg from "../../../assets/images/slider-img.png"
 import { useState } from 'react';
@@ -35,7 +35,7 @@ const Banner = () => {
                 >
                     <div className='text-white '>
                         <h3 className='text-4xl py-4 px-2 font-julious'  >Ignite Your Passion for Photography</h3>
-                        <p className='text-base px-1 font-roboto' > Fuel your passion for photography with our comprehensive programs designed for both beginners and enthusiasts. <br /></p>
+                        <p className='text-base px-1 font-roboto' > Fuel your passion for photography with our comprehensive programs designed for both beginners and enthusiasts.</p>
                         <button className='my-btn my-4'>Learn More</button>
                     </div>
                     <div className='text-white '>
@@ -45,7 +45,7 @@ const Banner = () => {
                     </div>
                     <div className='text-white '>
                         <h3 className='text-4xl py-4 px-2 font-julious' >Unleash Your Creativity</h3>
-                        <p className='text-base px-1 font-roboto' >Discover the joy of expressing your artistic vision through photography at our school. <br /> Unleash your creativity and capture stunning moments that inspire.</p>
+                        <p className='text-base px-1 font-roboto' >Discover the joy of expressing your artistic vision through photography at our school. Unleash your creativity and capture stunning moments that inspire.</p>
                         <button className='my-btn my-4'>Learn More</button>
                     </div>
 
@@ -59,8 +59,9 @@ const Banner = () => {
                     <div className="flex justify-center ">
                         {[0, 1, 2].map((index) => (
                             <div
+                                onClick={()=>setCurrentSlide(index)}
                                 key={index}
-                                className={`w-6 h-1 mx-1 rounded-full ${currentSlide === index ? 'bg-[#fad932]' : 'bg-gray-500'
+                                className={`w-6 h-1 mx-1 cursor-pointer rounded-full ${currentSlide === index ? 'bg-[#fad932]' : 'bg-gray-500'
                                     }`}>
 
                             </div>
