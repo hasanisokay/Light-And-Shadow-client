@@ -12,7 +12,7 @@ const Footer = () => {
                     <h3 className='font-bold lg:ml-20 my-2 text-3xl'>Contact US</h3>
                     <div className='flex gap-10 '>
                         <div>
-                            <span className='flex gap-4 items-center mt-2'><FaMapMarkerAlt /> Location</span>
+                            <span className='flex gap-4 items-center mt-2'><FaMapMarkerAlt />43/A Mirpur, Dhaka</span>
                             <span className='flex gap-4 items-center mt-2'><FaEnvelope />demo@gmail.com</span>
                             <span className='flex gap-4 items-center mt-2'><FaPhoneAlt />Call +88 01600000000</span>
                         </div>
