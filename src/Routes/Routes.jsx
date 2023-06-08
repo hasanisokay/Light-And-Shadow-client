@@ -12,6 +12,7 @@ import Classes from '../Pages/Classes/Classes';
 import Instructors from '../Pages/Instructors/Instructors';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import Profile from '../Pages/Profile/Profile';
+import SingleInstructor from '../Pages/Instructors/SingleInstructor';
 
 
   export const router = createBrowserRouter([
@@ -47,6 +48,10 @@ import Profile from '../Pages/Profile/Profile';
         {
           path: "profile",
           element: <Profile></Profile>
+        },
+        {
+          path: "instructor/:id",
+          element: <SingleInstructor></SingleInstructor>,
         }
       ]
     },

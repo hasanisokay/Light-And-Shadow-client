@@ -9,6 +9,7 @@ import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import Lottie from "lottie-react";
 import lottiesignup from '../../assets/signUpLottie.json';
 import { useEffect } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
 const SignUp = () => {
   const { createUser, updateUserProfile, logOut } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -17,6 +18,7 @@ const SignUp = () => {
   const [confirmPasswordType, setConfirmPasswordType] = useState("password")
   const onSubmit = data => {
     if (data.password !== data.confirmPassword) {
+      toast.error("Passwords need to match. Try again")
       return
     }
     delete data.confirmPassword
@@ -135,6 +137,7 @@ const SignUp = () => {
               </div>
               <div className="form-control mt-6">
                 <input className="bg-[#031003] py-1 rounded-full  text-white cursor-pointer" type="submit" value="Sign Up" />
+                <Toaster/>
               </div>
             </form>
             <p className='font-semibold text-lg text-center'>Already have an account? <Link to={"/login"} className='text-blue-600'>Please login</Link></p>
