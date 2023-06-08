@@ -13,7 +13,7 @@ const Dashboard = () => {
               <Helmet>
                 <title>Light & Shadow | Dashboard</title>
             </Helmet>
-            <h1>Th</h1>
+            
             
         </div>
     );
