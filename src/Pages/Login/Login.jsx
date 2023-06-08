@@ -13,37 +13,18 @@ const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const previousClickedPath = location.state?.pathname || "/"
-    const { signIn } = useContext(AuthContext)
+    const { signIn,user } = useContext(AuthContext)
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const [disable, setDisable] = useState(false)
     const [passwordType, setPasswordType] = useState("password")
 
 
     const onSubmit = (data) => {
-        console.log(data);
-        // if (disable) {
-        //     return
-        // }
-        // const form = e.target;
-        // const email = form.email.value
-        // const password = form.password.value
-        // console.log(email, password);
-        // signIn(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         Swal.fire({
-        //             title: 'User Log in Successful',
-        //             showClass: {
-        //                 popup: 'animate__animated animate__fadeInDown'
-        //             },
-        //             hideClass: {
-        //                 popup: 'animate__animated animate__fadeOutUp'
-        //             }
-        //         })
-        //         navigate(previousClickedPath, { replace: true })
-
-        //     })
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                navigate(previousClickedPath, { replace: true })
+            })
     }
 
     return (
@@ -51,6 +32,7 @@ const Login = () => {
             <Helmet>
                 <title>Light & Shadow | Sign in</title>
             </Helmet>
+            {user && navigate("/")}
             <div className="hero min-h-screen bg-[#031003]">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center md:w-1/2 lg:text-left">

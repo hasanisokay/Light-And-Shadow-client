@@ -36,9 +36,9 @@ const Navbar = () => {
                             <img src={user?.photoURL} />
                         </div>
                     </label>
-                    <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-zinc-600 w-52 ">
-                        <li><Link to={"/profile"}>Profile</Link></li>
-                        <li><Link onClick={()=>logOut()}>Logout</Link></li>
+                    <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-[#031003] bg-opacity-80 hover:bg-opacity-95 w-52 border-2 rounded-box ">
+                        <li className='hover:bg-[#fad932] transform duration-300 hover:rounded hover:text-lg' ><Link to={"/profile"}>Profile</Link></li>
+                        <li className='hover:bg-[#fad932] transform duration-300 hover:rounded hover:text-lg'><Link onClick={()=>logOut()}>Logout</Link></li>
                     </ul>
                 </div>) : <Link to={"/login"} >Login</Link>}
             </div>

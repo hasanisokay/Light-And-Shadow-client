@@ -9,6 +9,8 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+
+    // registering user to firebase
     const createUser = (email, password)=>{
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email,password)
@@ -20,17 +22,21 @@ const AuthProvider = ({ children }) => {
     const logOut = ()=>{
         return signOut(auth)
     }
+
+    // updating user profile name and photo
     const updateUserProfile = (name, photoURL)=>{
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photoURL
         })
     }
-    const googleProvider = new GoogleAuthProvider()
 
+    // google provider and sign in
+    const googleProvider = new GoogleAuthProvider()
     const googleSignIn =()=>{
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
+
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser);

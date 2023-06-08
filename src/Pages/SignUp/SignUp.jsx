@@ -8,47 +8,64 @@ import { FaEye } from 'react-icons/fa';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import Lottie from "lottie-react";
 import lottiesignup from '../../assets/signUpLottie.json';
+import { useEffect } from 'react';
 const SignUp = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext)
+  const { createUser, updateUserProfile, logOut } = useContext(AuthContext)
   const navigate = useNavigate()
-  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, reset, formState: { errors }, setError, clearErrors } = useForm();
   const [passwordType, setPasswordType] = useState("password")
   const [confirmPasswordType, setConfirmPasswordType] = useState("password")
   const onSubmit = data => {
-    console.log(data);
+    if (data.password !== data.confirmPassword) {
+      return
+    }
+    delete data.confirmPassword
 
-    // console.log(data.email, data.password);
-    // createUser(data.email, data.password)
-    //   .then(result => {
-    //     const loggedUser = result.user;
-    //     // console.log(loggedUser);
-    //     const saveUser = {name: data.name, email:data.email}
-    //     updateUserProfile(data.name, data.photoURL)
-    //       .then(() => {
-    //         fetch(`https://bistro-boss-server-neon.vercel.app/users`, {
-    //           method: "POST",
-    //           headers: {
-    //             "content-type": "application/json"
-    //           },
-    //           body: JSON.stringify(saveUser)
-    //         })
-    //           .then(res => res.json())
-    //           .then(data => {
-    //             if (data.insertedId) {
-    //               reset()
-    //               Swal.fire(
-    //                 'Updated',
-    //                 'Profile information updated',
-    //                 'success'
-    //               )
-    //               navigate("/")
-    //             }
-    //           })
-    //       })
-    //       .catch(error => console.log(error))
-    //   })
+    createUser(data.email, data.password)
+      .then(result => {
+        const loggedUser = result.user;
+        const newUser = { name: data.name, email: data.email }
+        updateUserProfile(data.name, data.photoURL)
+          .then(() => {
+            fetch(`http://localhost:5000/users`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json"
+              },
+              body: JSON.stringify(newUser)
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.insertedId) {
+                  reset()
+                  navigate("/")
+                  // logOut()
+                  //   .then(() => navigate("/login"))
+                  // Swal.fire(
+                  //   'User Created Successfully',
+                  //   'Please login to continue',
+                  //   'success'
+                  // )
+                }
+              })
+          })
+          .catch(error => console.log(error))
+      })
 
   };
+
+  // below code is for confirm password error
+  const password = watch('password');
+  const confirmPassword = watch('confirmPassword');
+  useEffect(() => {
+    if (password && confirmPassword && password !== confirmPassword) {
+      setError('confirmPassword', {
+        type: 'passwordMatch',
+        message: 'Passwords do not match',
+      });
+    } else { clearErrors('confirmPassword') }
+  }, [password, confirmPassword]);
+
 
   return (
     <>
@@ -92,7 +109,7 @@ const SignUp = () => {
                   required: true,
                   minLength: 6,
                   maxLength: 20,
-                  pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z])/
+                  pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                 })} placeholder="password" className="input input-bordered" />
                 <div className='flex mt-2 items-center gap-4 mx-2'>
                   <FaEye className='cursor-pointer' onClick={() => passwordType === "password" ? setPasswordType("text") : setPasswordType("password")} />
@@ -108,17 +125,13 @@ const SignUp = () => {
                 </label>
                 <input type={confirmPasswordType} name='confirmPassword' {...register("confirmPassword", {
                   required: true,
-                  minLength: 6,
-                  maxLength: 20,
-                  pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z])/
                 })} placeholder="confirm password" className="input input-bordered" />
                 <div className='flex mt-2 items-center gap-4 mx-2'>
                   <FaEye className='cursor-pointer' onClick={() => confirmPasswordType === "password" ? setConfirmPasswordType("text") : setConfirmPasswordType("password")} />
                   <p className='text-xs font-roboto cursor-pointer' onClick={() => confirmPasswordType === "password" ? setConfirmPasswordType("text") : setConfirmPasswordType("password")}>{confirmPasswordType === "password" ? "Show Password" : "Hide Password"} </p>
                 </div>
-                {errors.confirmPassword?.type === "minLength" && <span className='text-red-600'>Password must be 6 character long</span>}
-                {errors.confirmPassword?.type === "maxLength" && <span className='text-red-600'>Maximum password length is 20 character</span>}
-                {errors.confirmPassword?.type === "pattern" && <span className='text-red-600'>Password Must have one number, uppercse, lowercase and a special character</span>}
+                {errors.confirmPassword?.type === 'passwordMatch' && (<span className="text-red-600">Passwords do not match</span>
+                )}
               </div>
               <div className="form-control mt-6">
                 <input className="bg-[#031003] py-1 rounded-full  text-white cursor-pointer" type="submit" value="Sign Up" />
