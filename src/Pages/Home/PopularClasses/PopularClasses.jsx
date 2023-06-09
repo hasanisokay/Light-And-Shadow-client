@@ -12,7 +12,7 @@ const PopularClasses = () => {
         .then(data=>setPopularClasses(data.data))
     },[])
     return (
-        <div className='mb-10 mx-6'>
+        <div className='mx-6'>
            <div className='text-white mb-4 ' >
            <h1 className='font-poppins lg:text-3xl text-xl mt-2 text-center'>Popular Classes to Elevate Your Photography Skills</h1>
             <p className='mt-1'>Explore our curated selection of popular classes that have captivated aspiring photographers around the world. Whether you're a beginner eager to learn the fundamentals or an experienced shutterbug looking to expand your repertoire, we have the perfect class to suit your needs. Enroll in one or more of these popular classes and join a community of passionate photographers who are dedicated to honing their craft. Unleash your creativity, expand your technical knowledge, and embark on a transformative journey that will elevate your photography skills to new heights.</p>

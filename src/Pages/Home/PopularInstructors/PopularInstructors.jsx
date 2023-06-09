@@ -19,7 +19,7 @@ const PopularInstructors = () => {
             .then(data => setInstructors(data.data))
     }, [])
     return (
-        <div className='mx-6 lg:my-52 mt-14 md:mt-32 flex lg:flex-row flex-col-reverse md:gap-4 md:items-center justify-around md:flex-row  lg:items-center'>
+        <div className='mx-6 mt-6 flex lg:flex-row flex-col-reverse md:gap-4 md:items-center justify-around md:flex-row  lg:items-center'>
             <div className='grid grid-cols-2 md-[50%] lg:w-[50%] lg:gap-2 gap-4'>
                 {
                     instructors.map(instructor => <div className='text-white' key={instructor._id}>

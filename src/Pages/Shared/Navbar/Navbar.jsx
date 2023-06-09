@@ -13,7 +13,9 @@ const Navbar = () => {
         <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/"}><FaHome/> Home</NavLink></li>
         <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/instructors"}><FaUserTie/> Instructors</NavLink></li>
         <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/classes"}><FaGraduationCap/> Classes</NavLink></li>
-        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard"}><FaChalkboardTeacher/> Dashboard</NavLink></li>
+        {
+            user && <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard"}><FaChalkboardTeacher/> Dashboard</NavLink></li>
+        }
     </>
     return (
         <>
