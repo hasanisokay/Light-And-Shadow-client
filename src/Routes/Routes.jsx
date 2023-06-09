@@ -7,12 +7,17 @@ import Main from '../Layout/Main';
 import Home from '../Pages/Home/Home/Home';
 import Login from '../Pages/Login/Login';
 import SignUp from '../Pages/SignUp/SignUp';
-import Dashboard from '../Pages/Dashboard/Dashboard';
 import Classes from '../Pages/Classes/Classes';
 import Instructors from '../Pages/Instructors/Instructors';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import Profile from '../Pages/Profile/Profile';
 import SingleInstructor from '../Pages/Instructors/SingleInstructor';
+import AdminRoute from './AdminRoute';
+import AdminDashboard from '../Dashboards/AdminDashboard';
+import InstractorRoute from './InstractorRoute';
+import InstructorDashboard from '../Dashboards/InstructorDashboard';
+import PrivateRoute from './PrivateRoute';
+import StudentDashboard from '../Dashboards/StudentDashboard';
 
 
   export const router = createBrowserRouter([
@@ -34,8 +39,16 @@ import SingleInstructor from '../Pages/Instructors/SingleInstructor';
           element: <SignUp></SignUp>
         },
         {
-          path: "dashboard",
-          element: <Dashboard></Dashboard>
+          path: "dashboard/admin",
+          element: <AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
+        },
+        {
+          path: "dashboard/instructor",
+          element: <InstractorRoute><InstructorDashboard></InstructorDashboard></InstractorRoute>
+        },
+        {
+          path: "dashboard/student",
+          element: <PrivateRoute><StudentDashboard></StudentDashboard></PrivateRoute>
         },
         {
           path: "classes",
@@ -52,6 +65,9 @@ import SingleInstructor from '../Pages/Instructors/SingleInstructor';
         {
           path: "instructor/:id",
           element: <SingleInstructor></SingleInstructor>,
+        },
+        {
+
         }
       ]
     },

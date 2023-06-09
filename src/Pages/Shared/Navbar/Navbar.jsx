@@ -4,17 +4,25 @@ import { NavLink ,Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import {FaChalkboardTeacher, FaGraduationCap, FaHome, FaShoppingCart, FaUserTie} from "react-icons/fa"
 import logo from "../../../assets/logo.png"
+import useInstructor from '../../../Hooks/useInstructor';
+import useAdmin from '../../../Hooks/useAdmin';
 // import useCart from '../../../Hooks/useCart';
 // import useAdmin from '../../../Hooks/useAdmin';
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
     const {pathname} = useLocation()
+    const [isAdmin, isAdminLoading] = useAdmin()
+    const [isInstructor, isInstructorLoading] = useInstructor()
     const navOptions = <>
         <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/"}><FaHome/> Home</NavLink></li>
         <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/instructors"}><FaUserTie/> Instructors</NavLink></li>
         <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/classes"}><FaGraduationCap/> Classes</NavLink></li>
         {
-            user && <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard"}><FaChalkboardTeacher/> Dashboard</NavLink></li>
+            (!loading && ! isAdminLoading && ! isInstructorLoading) &&(
+            (isAdmin && <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard/admin"}><FaChalkboardTeacher/> Dashboard</NavLink></li>) ||
+            (isInstructor && <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard/instructor"}><FaChalkboardTeacher/> Dashboard</NavLink></li>) || 
+            (user && <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard/student"}><FaChalkboardTeacher/> Dashboard</NavLink></li>)
+            )
         }
     </>
     return (

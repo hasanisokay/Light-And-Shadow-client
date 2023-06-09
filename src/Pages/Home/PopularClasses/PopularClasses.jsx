@@ -20,7 +20,7 @@ const PopularClasses = () => {
            </div>
            <div className='overflow-hidden'>
             {
-                popularClasses.map( singleClass=><ClassCard singleClass={singleClass}></ClassCard>)
+                popularClasses.map( singleClass=><ClassCard key={singleClass._id} singleClass={singleClass}></ClassCard>)
             }
            </div>
         </div>
