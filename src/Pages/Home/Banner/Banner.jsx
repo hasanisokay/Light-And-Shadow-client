@@ -21,7 +21,7 @@ const Banner = () => {
             <div className=''>
                 <img src={bannerImg} className='w-[900px] h-[600px]' />
             </div>
-            <div className="lg:w-[30%] rounded lg:pt-20 lg:ml-10">
+            <div className="lg:w-[30%] rounded lg:pt-20 lg:ml-10 lg:mx-0 md:mx-0 mx-6">
                 <Carousel
                     autoPlay={true}
                     infiniteLoop={true}
@@ -34,24 +34,24 @@ const Banner = () => {
                     onChange={handleCarouselChange}
                 >
                     <div className='text-white '>
-                        <h3 className='text-4xl py-4 px-2 font-julious'  >Ignite Your Passion for Photography</h3>
+                        <h3 className='lg:text-4xl text-3xl py-4 px-2 font-julious'  >Ignite Your Passion for Photography</h3>
                         <p className='text-base px-1 font-roboto' > Fuel your passion for photography with our comprehensive programs designed for both beginners and enthusiasts.</p>
                         <button className='my-btn my-4'>Learn More</button>
                     </div>
                     <div className='text-white '>
-                        <h3 className='text-4xl py-4 px-2 font-julious'  >Transform Your Passion into Art</h3>
+                        <h3 className='lg:text-4xl text-3xl py-4 px-2 font-julious'  >Transform Your Passion into Art</h3>
                         <p className='text-base px-1 font-roboto' > Nurture your passion for photography and transform it into a medium of artistic expression. Learn how to communicate your unique perspective through captivating visuals.</p>
                         <button className='my-btn my-4'>Learn More</button>
                     </div>
                     <div className='text-white '>
-                        <h3 className='text-4xl py-4 px-2 font-julious' >Unleash Your Creativity</h3>
+                        <h3 className='lg:text-4xl text-3xl py-4 px-2 font-julious' >Unleash Your Creativity</h3>
                         <p className='text-base px-1 font-roboto' >Discover the joy of expressing your artistic vision through photography at our school. Unleash your creativity and capture stunning moments that inspire.</p>
                         <button className='my-btn my-4'>Learn More</button>
                     </div>
 
                 </Carousel>
 
-                <div className='flex lg:flex-row flex-row-reverse items-center justify-between  my-2'>
+                <div className='flex lg:flex-row flex-row-reverse items-center justify-between mx-6 my-2'>
                     <div className="slider-controls text-white flex gap-2 items-center lg:justify-start justify-center">
                         <button className='border-white border w-8 h-8 rounded-full hover:bg-[#fad932] hover:border-0' onClick={handlePrevSlide}><FaAngleLeft className='w-full h-full' /> </button>
                         <button className='border-white border w-8 h-8 rounded-full hover:bg-[#fad932] hover:border-0' onClick={handleNextSlide}><FaAngleRight className='w-full h-full' /> </button>

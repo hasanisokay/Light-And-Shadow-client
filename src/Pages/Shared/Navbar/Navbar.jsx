@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { NavLink ,Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import {FaShoppingCart} from "react-icons/fa"
+import {FaChalkboardTeacher, FaGraduationCap, FaHome, FaShoppingCart, FaUserTie} from "react-icons/fa"
 import logo from "../../../assets/logo.png"
 // import useCart from '../../../Hooks/useCart';
 // import useAdmin from '../../../Hooks/useAdmin';
@@ -10,10 +10,10 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const {pathname} = useLocation()
     const navOptions = <>
-        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/"}>Home</NavLink></li>
-        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/instructors"}>Instructors</NavLink></li>
-        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/classes"}>Classes</NavLink></li>
-        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard"}>Dashboard</NavLink></li>
+        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/"}><FaHome/> Home</NavLink></li>
+        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/instructors"}><FaUserTie/> Instructors</NavLink></li>
+        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/classes"}><FaGraduationCap/> Classes</NavLink></li>
+        <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard"}><FaChalkboardTeacher/> Dashboard</NavLink></li>
     </>
     return (
         <>

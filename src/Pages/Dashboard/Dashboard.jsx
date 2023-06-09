@@ -8,6 +8,7 @@ const Dashboard = () => {
     const [isInstructor, isInstructorLoading] = useInstructor()
     console.log("admin", isAdmin);
     console.log("instructor", isInstructor);
+    
     return (
         <div className='pt-20'>
               <Helmet>

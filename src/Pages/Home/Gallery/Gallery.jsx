@@ -9,7 +9,7 @@ import img2 from "../../../assets/images/gallery-2.jpg";
 import img3 from "../../../assets/images/gallery-3.jpg";
 import img4 from "../../../assets/images/gallery-4.jpg";
 import galleryBg from "../../../assets/images/gallery-bg.png"
-
+// import { Fade } from "react-awesome-reveal";
 import rai1 from "../../../assets/images/random/1.jpg"
 import rai2 from "../../../assets/images/random/2.jpg"
 import rai3 from "../../../assets/images/random/3.jpg"
@@ -110,11 +110,11 @@ const Gallery = () => {
     return (
         <div>
             <div className="text-white flex  flex-col items-end">
-                <div className="lg:w-[40%] lg:text-start lg:-mb-36 mt-10 mx-2">
+                <div className="lg:w-[40%] lg:text-start lg:-mb-36 mt-10 mx-6">
                     <h3 className="font-poppins font-bold text-3xl">Our Gallery</h3>
                     <h4 className=" font-semibold text-lg">A Visual Journey Through Extraordinary Moments</h4>
                     <p className="  font-roboto">Discover a mesmerizing collection of extraordinary moments frozen in time, where each image tells a unique story. From breathtaking landscapes to candid portraits, our gallery showcases the artistry and skill nurtured within our photography school.</p>
-                    <button className="my-btn mt-4">Learn More</button>
+                    <button className="my-btn my-4">Learn More</button>
                 </div>
             </div>
             <div className="w-full my-10 md:my-32">
