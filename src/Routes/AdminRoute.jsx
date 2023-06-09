@@ -11,7 +11,7 @@ const AdminRoute = ({ children }) => {
     // console.log(location);
     const { user, loading } = useAuth()
     if (loading || isAdminLoading) {
-        return <Lottie className='w-60 h-60 mx-auto ' animationData={loadingJson} loop={true} />;
+        return <Lottie className='w-60 pt-20 h-72 mx-auto' animationData={loadingJson} loop={true} />;
     }
     if (user && isAdmin) {
         return children;

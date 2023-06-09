@@ -1,20 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
+import Lottie from "lottie-react";
+import loadingJson from "../../assets/loading.json"
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([])
-    
+    const {user} = useAuth();
     const navigate = useNavigate()
     const handleInstractor = (id) => {
         navigate(`/instructor/${id}`)
     }
+    
+    const page = 1;
+    const {data:loadedInstructors=[], isLoading, refetch} = useQuery({
+        queryKey: ["loadedInstructors", user?.email ],
+        queryFn: async ()=>{
+            const data = await axios.get("http://localhost:5000/instructors");
+            setInstructors(loadedInstructors);
+           return data.data
+        },
+    }) 
+    if(isLoading) {
+        return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
+      }
 
-    useEffect(() => {
-        fetch("http://localhost:5000/instructors")
-            .then(res => res.json())
-            .then(data => setInstructors(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/instructors")
+    //         .then(res => res.json())
+    //         .then(data => setInstructors(data))
+    // }, [])
     // console.log(instructors);
     return (
         <div>

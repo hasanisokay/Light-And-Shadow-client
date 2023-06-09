@@ -3,15 +3,29 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ClassCard from '../Shared/ClassCard/ClassCard';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../Hooks/useAuth';
+import Lottie from "lottie-react";
+import loadingJson from "../../assets/loading.json"
 
 const Classes = () => {
     const [classes, setClasses] = useState([])
-    useEffect(()=>{
-        fetch(`http://localhost:5000/classes`)
-        .then(res=>res.json())
-        .then(data=>setClasses(data))
-    },[])
-    console.log(classes);
+    const {user} = useAuth()
+    const page = 1; 
+
+    const {data: loadedClasses, isLoading, refetch, error} = useQuery({
+        queryKey:["loadedClasses", page],
+        queryFn: async()=>{
+            const data = await axios.get("http://localhost:5000/classes")
+            console.log(data);
+            setClasses(loadedClasses);
+            return data.data
+        }
+    }) 
+    if(isLoading) {
+        return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
+      }
     return (
         <div className='mx-6'>
               <Helmet>

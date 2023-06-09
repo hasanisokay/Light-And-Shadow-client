@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     // console.log(location);
     const { user, loading } = useContext(AuthContext);
     if (loading) {
-        return <Lottie className='w-60 h-60 mx-auto ' animationData={loadingJson} loop={true} />;
+        return <Lottie className='w-60 pt-20 h-72 mx-auto' animationData={loadingJson} loop={true} />;
     }
     if (user) {
         return children;
