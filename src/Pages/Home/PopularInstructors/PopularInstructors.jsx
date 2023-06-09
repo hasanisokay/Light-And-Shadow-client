@@ -3,21 +3,16 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import bg from "../../../assets/images/gallery-bg.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import "./style.css"
 const PopularInstructors = () => {
     const [instructors, setInstructors] = useState([]);
-
-    const [isFlipped, setIsFlipped] = useState(Array(instructors.length).fill(false));
-    const handleCardHover = (index) => {
-        setIsFlipped((prevState) => {
-            const updatedState = [...prevState];
-            updatedState[index] = !updatedState[index];
-            return updatedState;
-        });
-    };
-
+    
+    const navigate = useNavigate()
+    const handleInstractor = (id) => {
+        navigate(`/instructor/${id}`)
+    }
 
     useEffect(() => {
         axios("http://localhost:5000/instructors/popular")
@@ -28,10 +23,11 @@ const PopularInstructors = () => {
             <div className='grid grid-cols-2 md-[50%] lg:w-[50%] lg:gap-2 gap-4'>
                 {
                     instructors.map(instructor => <div className='text-white' key={instructor._id}>
-                        <img src={instructor.image} className='relative max-h-[150px] max-w-[150px] lg:max-h-[150px] lg:min-h-[150px] lg:max-w-[200px] lg:min-w-[200px] border-4 rounded' alt="" />
-                        <div className='absolute z-10 lg:-mt-[150px] -mt-[105px] py-2 px-2 max-h-[150px] max-w-[150px] lg:max-h-[150px] lg:min-h-[150px] lg:max-w-[200px] lg:min-w-[200px] bg-black bg opacity-0 hover:opacity-80'>
-                            <p className=''>Instructor: <span className='font-semibold'>{instructor.name}</span></p>
-                            <p className=''>Students in class: <span className='font-semibold'>{instructor.students_in_class}</span></p>
+                        <img src={instructor.image} className='relative max-h-[150px] min-h-[150px] max-w-[150px] min-w-[150px] lg:max-h-[150px] lg:min-h-[150px] lg:max-w-[200px] lg:min-w-[200px] border-4 rounded' alt="" />
+                        <div className='absolute z-10 lg:-mt-[150px] -mt-[150px] py-2 px-2 max-h-[150px] min-h-[150px] max-w-[150px] min-w-[150px] lg:max-h-[150px] lg:min-h-[150px] lg:max-w-[200px] lg:min-w-[200px] bg-black bg opacity-0 hover:opacity-80'>
+                            <p className='lg:text-base text-xs'>Instructor: <span className='font-semibold'>{instructor.name}</span></p>
+                            <p className='text-xs lg:text-base'>Students in class: <span className='font-semibold'>{instructor.students_in_class}</span></p>
+                            <button onClick={() => handleInstractor(instructor._id)} className='bg-[#fad932] md:my-3 lg:py-2 py-0.5 px-2 lg:px-5 hover:bg-inherit hover:text-[#fad932] hover:border-[#fad932] hover:border rounded-full text-black md:text-xs'>See Classes</button>
                         </div>
                     </div>)
                 }

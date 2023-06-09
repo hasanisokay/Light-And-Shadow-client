@@ -3,15 +3,12 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 
 const Instructors = () => {
-    const navigate = useNavigate()
     const [instructors, setInstructors] = useState([])
-
+    
+    const navigate = useNavigate()
     const handleInstractor = (id) => {
         navigate(`/instructor/${id}`)
     }
-
-
-
 
     useEffect(() => {
         fetch("http://localhost:5000/instructors")
