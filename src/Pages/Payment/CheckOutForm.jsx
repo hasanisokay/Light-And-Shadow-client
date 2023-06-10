@@ -70,6 +70,7 @@ const CheckOutForm = () => {
                 }
                 axiosSecure.post("/payments", payment)
                 .then(res=>console.log("from payment added", res))
+                
                 axiosSecure.patch(`/selectedClass/${paymentClass._id}`)
                 .then(res=>console.log("from enrolled update", res))
 
