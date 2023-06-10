@@ -23,6 +23,7 @@ const ClassCard = ({ singleClass }) => {
             .then(data => {
                 console.log(data);
                 if(data.data.insertedId){
+                    refetch()
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',

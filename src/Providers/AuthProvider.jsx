@@ -9,6 +9,7 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [paymentClass, setPaymentClass] = useState([])
 
     // registering user to firebase
     const createUser = (email, password)=>{
@@ -65,7 +66,7 @@ const AuthProvider = ({ children }) => {
     
     
     const authInfo = {
-        user, loading, createUser, logOut, googleSignIn, signIn, updateUserProfile
+        user, loading, createUser, logOut, googleSignIn, signIn, updateUserProfile, paymentClass, setPaymentClass
     }
     return (
         <AuthContext.Provider value={authInfo}>

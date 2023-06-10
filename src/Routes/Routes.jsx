@@ -18,6 +18,8 @@ import InstractorRoute from './InstractorRoute';
 import InstructorDashboard from '../Dashboards/InstructorDashboard';
 import PrivateRoute from './PrivateRoute';
 import StudentDashboard from '../Dashboards/StudentDashboard';
+import AboutUs from '../Pages/AboutUs/AboutUs';
+import Payment from '../Pages/Payment/Payment';
 
 
   export const router = createBrowserRouter([
@@ -51,6 +53,10 @@ import StudentDashboard from '../Dashboards/StudentDashboard';
           element: <PrivateRoute><StudentDashboard></StudentDashboard></PrivateRoute>
         },
         {
+          path:"dashboard/payment",
+          element: <PrivateRoute><Payment></Payment></PrivateRoute>
+        },
+        {
           path: "classes",
           element: <Classes></Classes>
         },
@@ -67,7 +73,8 @@ import StudentDashboard from '../Dashboards/StudentDashboard';
           element: <SingleInstructor></SingleInstructor>,
         },
         {
-
+          path:"about",
+          element: <AboutUs></AboutUs>
         }
       ]
     },

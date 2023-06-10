@@ -32,7 +32,6 @@ const Login = () => {
             <Helmet>
                 <title>Light & Shadow | Sign in</title>
             </Helmet>
-            {user && navigate("/")}
             <div className="hero min-h-screen bg-[#031003]">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center md:w-1/2 lg:text-left">

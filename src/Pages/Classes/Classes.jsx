@@ -14,16 +14,15 @@ const Classes = () => {
     const {user} = useAuth()
     const page = 1; 
 
-    const {data: loadedClasses, isLoading, refetch, error} = useQuery({
+    const {data: loadedClasses=[], isLoading:isClassesLoading, refetch, error} = useQuery({
         queryKey:["loadedClasses", page],
         queryFn: async()=>{
             const data = await axios.get("http://localhost:5000/classes")
-            console.log(data);
             setClasses(loadedClasses);
             return data.data
         }
     }) 
-    if(isLoading) {
+    if(isClassesLoading) {
         return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
       }
     return (
