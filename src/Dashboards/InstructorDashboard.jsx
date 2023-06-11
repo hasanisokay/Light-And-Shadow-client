@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token
 const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
@@ -12,24 +13,29 @@ const InstructorDashboard = () => {
     const { user } = useAuth()
     const [axiosSecure] = useAxiosSecure();
     const [myClasses, setMyClasses] = useState([])
-    console.log(myClasses);
+
+
     const handleAddClass = () => {
         setView("addClass")
     }
-    const handleUpdateClass = (id) => {
-
-    }
-    const handleFeedBack = (feedback)=>{
-        
+    const handleUpdateClass = (selectedClass) => {
+        // const { available_seats, _id, class_title, price } = selectedClass;
+        // showUpdateForm(true)
     }
     const handleAllClasses = () => {
-        axiosSecure.get(`/instructorsAllClass?email=${user?.email}`)
-            .then(res => {
-                setMyClasses(res.data);
-            })
+        refetchMyClasses()
         setView("myClasses")
     }
 
+    // getting all my classes from backend
+    const { data: loadedMyClasses = [], isLoading:isAllClassesLoading, refetch: refetchMyClasses, error: allClassesError } = useQuery({
+        queryKey: ["loadedMyClasses", user?.email],
+        queryFn: async () => {
+            const data = await axiosSecure.get(`/instructorsAllClass?email=${user?.email}`)
+            setMyClasses(data.data);
+            return data.data;
+        }
+    })
     // form elements
     const initialValues = {
         className: "",
@@ -134,33 +140,39 @@ const InstructorDashboard = () => {
                     )
                 }
             </div>
-            {view ==="myClasses" && (
-                <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6'>
-                    {myClasses.map(singleClass => (
-                        <div key={singleClass._id}>
-                            <div className="card w-96 bg-[#d7d2b7] shadow-xl">
-                                <figure className='h-56'><img src={singleClass.image_link} className='h-full w-full' alt="" /></figure>
-                                <div className="card-body">
-                                    <h2 className="card-title">{singleClass.class_title}</h2>
-                                    <p>Instructor: <span className='font-semibold'>{singleClass.class_instructor_name}</span></p>
-                                    <p>Instructor Email: <span className='font-semibold'>{singleClass?.instructor_email}</span></p>
-                                    <p>Price: <span className='font-semibold'>{singleClass.price}</span></p>
-                                    {singleClass?.status !=="denied" && <p>Available Seats: <span className='font-semibold '>{singleClass.available_seats}</span></p>}
-                                    <p>Status: <span className='font-semibold '>{singleClass?.status}</span></p>
-                                    {singleClass?.status ==="denied" && (singleClass?.feedback ? <p>feedback <span className='font-semibold '>{singleClass?.feedback}</span></p> : <p>feedback <span className='font-semibold '>No feedback available</span></p> )}
-                                    {singleClass?.status !=="denied" && <p>Enrolled Students: <span className='font-semibold '>{singleClass?.students_in_class}</span></p>}
+            {view === "myClasses" && (
+                <div>
+                    <div>
 
-                                    <div className={`flex gap-6`}>
-                                        {
-                                             singleClass?.status !=="denied" &&
-                                            <button onClick={() => handleUpdateClass(singleClass._id)} className='bg-red-500 py-1 px-2 rounded-lg text-white cursor-pointer' >Update</button>
-                                        }
+                    </div>
+                    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6'>
+                        {myClasses.map(singleClass => (
+                            <div key={singleClass._id}>
+                                <div className="card w-96 bg-[#d7d2b7] shadow-xl">
+                                    <figure className='h-56'><img src={singleClass.image_link} className='h-full w-full' alt="" /></figure>
+                                    <div className="card-body">
+                                        <h2 className="card-title">{singleClass.class_title}</h2>
+                                        <p>Instructor: <span className='font-semibold'>{singleClass.class_instructor_name}</span></p>
+                                        <p>Instructor Email: <span className='font-semibold'>{singleClass?.instructor_email}</span></p>
+                                        <p>Price: <span className='font-semibold'>{singleClass.price}</span></p>
+                                        {singleClass?.status !== "denied" && <p>Available Seats: <span className='font-semibold '>{singleClass.available_seats}</span></p>}
+                                        <p>Status: <span className='font-semibold '>{singleClass?.status}</span></p>
+                                        {singleClass?.status === "denied" && (singleClass?.feedback ? <p>feedback <span className='font-semibold '>{singleClass?.feedback}</span></p> : <p>feedback <span className='font-semibold '>No feedback available</span></p>)}
+                                        {singleClass?.status !== "denied" && <p>Enrolled Students: <span className='font-semibold '>{singleClass?.students_in_class}</span></p>}
+
+                                        <div className={`flex gap-6`}>
+                                            {
+                                                singleClass?.status !== "denied" &&
+                                                <button onClick={() => handleUpdateClass(singleClass)} className='bg-red-500 py-1 px-2 rounded-lg text-white cursor-pointer' >Update</button>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
+
 
             )}
 

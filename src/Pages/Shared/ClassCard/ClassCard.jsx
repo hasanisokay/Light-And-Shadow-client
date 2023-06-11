@@ -56,7 +56,7 @@ const ClassCard = ({ singleClass }) => {
                     <h2 className="lg:text-lg text-base">Course Instructor: <span className='font-semibold'>{class_instructor_name}</span></h2>
                     <h2 className="lg:text-lg text-base">Available Seat: <span className='font-semibold'>{available_seats}</span></h2>
                     <h2 className="lg:text-lg text-base mb-2 ">Price: <span className='font-semibold'>$ {price}</span></h2>
-                    <button disabled={available_seats === 0 || user?.role === "admin" || user?.role === "instructor"} onClick={() => handleSelectCourse(_id)} className='bg-[#031003] py-1 px-2 rounded-lg hover:bg-[#111827] text-white cursor-pointer'>Select Course</button>
+                    <button disabled={available_seats === 0 || user?.role === "admin" || user?.role === "instructor"} onClick={() => handleSelectCourse(_id)} className={`${available_seats !== 0 ? "bg-[#031003]" : "bg-[#111827] cursor-default"  }  py-1 px-2 rounded-lg hover:bg-[#111827] text-white cursor-pointer`}>Select Course</button>
                 </div>
             </div>
 

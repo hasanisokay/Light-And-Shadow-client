@@ -83,7 +83,7 @@ const CheckOutForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                Navigate("/dashboard/student")
+                navigate("/dashboard/student")
             }
 
     }

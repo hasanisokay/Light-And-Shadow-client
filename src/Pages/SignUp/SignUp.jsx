@@ -26,7 +26,7 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then(result => {
         const loggedUser = result.user;
-        const newUser = { name: data.name, email: data.email }
+        const newUser = { name: data.name, email: data.email, image:data.photoURL }
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
             fetch(`http://localhost:5000/users`, {

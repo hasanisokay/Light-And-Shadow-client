@@ -27,17 +27,17 @@ const Navbar = () => {
     </>
     return (
         <>
-            <div className={`navbar fixed z-10 w-full ${pathname ==="/" && "lg:w-[30%] lg:bg-opacity-0"}  bg-black text-white max-w-screen-xl bg-opacity-30`}>
+            <div className={`navbar fixed z-50 w-full ${pathname ==="/" && "lg:w-[30%] lg:bg-opacity-0"}  bg-black text-white max-w-screen-xl bg-opacity-30`}>
                 <div className="navbar-start">
-                    <div className="dropdown">
+                    <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-4 p-2 border-2 font-bold bg-[#031003] bg-opacity-25 hover:bg-opacity-95 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-compact z-50 dropdown-content mt-4 p-2 border-2 font-bold bg-[#031003] bg-opacity-25 hover:bg-opacity-95 rounded-box w-52">
                             {navOptions}
                         </ul>
                     </div>
-                    <Link className='' to="/"><img className='invert brightness-0 h-16 w-36' src={logo} alt="" /></Link>
+                    <Link className='' to="/"><img className='invert brightness-0 w-36' src={logo} alt="" /></Link>
                 </div>
                 <div className="navbar-end">
                 {user ? (<div className="dropdown dropdown-end">

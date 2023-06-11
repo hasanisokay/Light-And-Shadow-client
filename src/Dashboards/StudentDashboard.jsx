@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment/moment';
 
 const StudentDashboard = () => {
-    const { user, paymentClass, setPaymentClass } = useAuth();
+    const { user, paymentClass, setPaymentClass, loading } = useAuth();
     const [selectedClass, setSelectedClass] = useState([])
     const [status, setStatus] = useState("pending")
     const navigate = useNavigate()
@@ -19,42 +19,53 @@ const StudentDashboard = () => {
 
     const handlePendingClasses = () => {
         setStatus("pending");
-        setSelectedClass([]);
+        refetchSelectedClaas()
     };
 
     const handleEnrolledClasses = () => {
         setStatus("enrolled");
-        setSelectedClass([]);
+        refetchSelectedClaas()
     };
 
-    const { data: loadedClasses = [], isLoading, refetch, error } = useQuery({
+    const { data: loadedClasses = [], isLoading:isSelectedClassesLoading, refetch:refetchSelectedClaas, error } = useQuery({
         queryKey: ["loadedClasses", user?.email, status],
         queryFn: async () => {
+
             const data = await axiosSecure.get(`/getSelectedClass?email=${user?.email}&status=${status}`)
             setSelectedClass(data.data);
             return data.data;
         }
     })
 
-    useEffect(() => {
-        refetch();
-    }, [status, refetch]);
-
-    if (isLoading) {
-        return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
-    }
 
     const handlePaymentHistory = () => {
         setStatus("")
-        axiosSecure.get(`/paymentHistory?email=${user?.email}`)
-            .then(res => setPaymentHistory(res.data))
+        refetchPaymentHistory()
     }
+
+    const { data: loadedPaymentHistory = [], isLoading:isPaymentHistoryLoading, refetch: refetchPaymentHistory, error: paymentHisotryError } = useQuery({
+        queryKey: ["loadedPaymentHistory", user?.email],
+        queryFn: async () => {
+            const data = await  axiosSecure.get(`/paymentHistory?email=${user?.email}`)
+            setPaymentHistory(data.data);
+            return data.data;
+        }
+    })
+
+    if (isPaymentHistoryLoading || isSelectedClassesLoading) {
+        return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
+    }
+
+
+
+
     const handleDeleteClass = (id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
+            customClass:{ title:"text-lg font-semibold", confirmButton:"mr-2 p-2", cancelButton:"p-2",  },
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
@@ -63,13 +74,13 @@ const StudentDashboard = () => {
                 axiosSecure.delete(`/deleteClass/${id}`)
                     .then(res => {
                         console.log(res);
-                        refetch()
                         if (res.data.deletedCount > 0) {
                             Swal.fire(
                                 'Deleted!',
                                 'Class deleted.',
                                 'success'
-                            )
+                                )
+                                refetchSelectedClaas()
                         }
                     })
             }
@@ -118,8 +129,8 @@ const StudentDashboard = () => {
                                 <p>Class Title: <span className='font-semibold text-xl'>{history?.paidForClass?.class_title}</span></p>
                                 <p>Class Instructor: <span className='font-semibold text-lg'>{history?.paidForClass?.class_instructor_name}</span></p>
                                 <p>Satus: <span className='font-semibold'>{history?.status}</span></p>
-                                <p>Satus: <span className='font-semibold'>{history?.status}</span></p>
-                                <p>Price: <span className='font-semibold'>{history?.price}</span></p>
+                                <p>User Email: <span className='font-semibold'>{history?.email}</span></p>
+                                <p>Price: <span className='font-semibold'>${history?.price}</span></p>
                                 <p>TrxId: <span className='font-semibold'>{history?.transactionId}</span></p>
                                 <p>Purchased Date: <span className='font-semibold'>{moment(history?.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</span> </p>
                             </div>
