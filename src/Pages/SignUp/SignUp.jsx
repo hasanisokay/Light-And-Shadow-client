@@ -41,13 +41,6 @@ const SignUp = () => {
                 if (data.insertedId) {
                   reset()
                   navigate("/")
-                  // logOut()
-                  //   .then(() => navigate("/login"))
-                  // Swal.fire(
-                  //   'User Created Successfully',
-                  //   'Please login to continue',
-                  //   'success'
-                  // )
                 }
               })
           })
