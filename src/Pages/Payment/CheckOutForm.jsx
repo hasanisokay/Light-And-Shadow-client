@@ -5,6 +5,7 @@ import { useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CheckOutForm = () => {
     const stripe = useStripe();
@@ -15,6 +16,7 @@ const CheckOutForm = () => {
     const [clientSecret, setClientSecret] = useState("");
     const [cardError, setCardError] = useState("");
     const [processing, setProcessing] = useState(false);
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!stripe || !elements) {
@@ -81,6 +83,7 @@ const CheckOutForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
+                Navigate("/dashboard/student")
             }
 
     }

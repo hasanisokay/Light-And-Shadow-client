@@ -13,7 +13,7 @@ const Footer = () => {
                     <div className='flex gap-10 '>
                         <div>
                             <span className='flex gap-4 items-center mt-2'><FaMapMarkerAlt />43/A Mirpur, Dhaka</span>
-                            <span className='flex gap-4 items-center mt-2'><FaEnvelope />demo@gmail.com</span>
+                            <span className='flex gap-4 items-center mt-2'><FaEnvelope />admin@lightandshadow.com</span>
                             <span className='flex gap-4 items-center mt-2'><FaPhoneAlt />Call +88 01600000000</span>
                         </div>
                         <ul className='text-semibold mt-2'>

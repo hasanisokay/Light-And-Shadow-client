@@ -10,10 +10,10 @@ const InstractorRoute = ({children}) => {
 
     // console.log(location);
     const { user, loading } = useAuth()
-    if (loading || isAdminLoading) {
+    if (loading || isInstructorLoading) {
         return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
     }
-    if (user && isAdmin) {
+    if (user && isInstructor) {
         return children;
     }
 
