@@ -9,7 +9,7 @@ import { Fade } from 'react-awesome-reveal';
 const PopularClasses = () => {
     const [popularClasses, setPopularClasses] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:5000/classes/popular`)
+        axios.get(`https://light-and-shadow.vercel.app/classes/popular`)
             .then(data => setPopularClasses(data.data))
     }, [])
     return (

@@ -18,7 +18,7 @@ const Classes = () => {
     const {data: loadedClasses=[], isLoading:isClassesLoading, refetch, error} = useQuery({
         queryKey:["loadedClasses", page],
         queryFn: async()=>{
-            const data = await axios.get("http://localhost:5000/classes")
+            const data = await axios.get("https://light-and-shadow.vercel.app/classes")
             setClasses(loadedClasses);
             return data.data
         }

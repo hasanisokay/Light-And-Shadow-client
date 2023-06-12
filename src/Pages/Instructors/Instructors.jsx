@@ -21,7 +21,7 @@ const Instructors = () => {
     const {data:loadedInstructors=[], isLoading:isInstructorsLoading , refetch} = useQuery({
         queryKey: ["loadedInstructors", user?.email ],
         queryFn: async ()=>{
-            const data = await axios.get("http://localhost:5000/instructors");
+            const data = await axios.get("https://light-and-shadow.vercel.app/instructors");
             setInstructors(loadedInstructors);
            return data.data
         },
@@ -31,7 +31,7 @@ const Instructors = () => {
       }
 
     // useEffect(() => {
-    //     fetch("http://localhost:5000/instructors")
+    //     fetch("https://light-and-shadow.vercel.app/instructors")
     //         .then(res => res.json())
     //         .then(data => setInstructors(data))
     // }, [])

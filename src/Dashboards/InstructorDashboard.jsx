@@ -6,6 +6,7 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
+import { FaChalkboard, FaClipboardList } from "react-icons/fa";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token
 const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
@@ -83,9 +84,9 @@ const InstructorDashboard = () => {
               <Helmet>
                 <title>Light & Shadow | Instructor</title>
             </Helmet>
-            <div className='text-center my-4'>
-                <button className={` p-3 w-40 transition-colors rounded-tl-lg rounded-bl-lg duration-300 border-r ${view === "myClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleAllClasses()}>My Classes</button>
-                <button className={` p-3 w-40 rounded-tr-lg rounded-br-lg transition-colors duration-300 border-r ${view === "addClass" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleAddClass()}>Add A class</button>
+            <div className='justify-center my-4 flex'>
+                <button className={` p-3 w-40 flex items-center gap-0.5 transition-colors rounded-tl-lg rounded-bl-lg duration-300 border-r ${view === "myClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleAllClasses()}> <FaChalkboard/> My Classes</button>
+                <button className={` p-3 w-40 flex items-center gap-0.5 rounded-tr-lg rounded-br-lg transition-colors duration-300 border-r ${view === "addClass" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleAddClass()}><FaClipboardList/> Add A class</button>
             </div>
             <div>
                 {

@@ -29,7 +29,7 @@ const SignUp = () => {
         const newUser = { name: data.name, email: data.email, image:data.photoURL }
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            fetch(`http://localhost:5000/users`, {
+            fetch(`https://light-and-shadow.vercel.app/users`, {
               method: "POST",
               headers: {
                 "content-type": "application/json"

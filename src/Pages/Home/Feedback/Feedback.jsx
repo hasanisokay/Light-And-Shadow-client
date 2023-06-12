@@ -10,7 +10,7 @@ const Feedback = () => {
 
     const [feedbacks, setFeedbacks] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:5000/stuedntsFeedback")
+        axios.get("https://light-and-shadow.vercel.app/stuedntsFeedback")
             .then(res => setFeedbacks(res.data))
     }, [])
     return (

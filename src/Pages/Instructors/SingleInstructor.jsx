@@ -11,7 +11,7 @@ const SingleInstructor = () => {
     const [classes, setClasses] = useState([]) 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/instructor/${id}`)
+        fetch(`https://light-and-shadow.vercel.app/instructor/${id}`)
             .then(res=>res.json())
             .then(data=>{
                 setClasses(data);

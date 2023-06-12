@@ -23,14 +23,14 @@ const PopularInstructors = () => {
     const { data: loadedInstructors = [], isLoading:isInstructorsLoading, refetch: refetchInstructors, error: instructorsError } = useQuery({
         queryKey: ["loadedInstructors", user?.email],
         queryFn: async () => {
-            const data = await axiosSecure.get("http://localhost:5000/instructors/popular")
+            const data = await axiosSecure.get("https://light-and-shadow.vercel.app/instructors/popular")
             setInstructors(data.data);
             return data.data;
         }
     })
 
     // useEffect(() => {
-    //     axios("http://localhost:5000/instructors/popular")
+    //     axios("https://light-and-shadow.vercel.app/instructors/popular")
     //         .then(data => setInstructors(data.data))
     // }, [])
     return (

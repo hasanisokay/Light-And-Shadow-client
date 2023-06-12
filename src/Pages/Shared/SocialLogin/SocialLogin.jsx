@@ -14,7 +14,7 @@ const SocialLogin = () => {
                 const loggedInUser = result.user;
 
                 const newUser = { name: loggedInUser.displayName, email: loggedInUser.email, image:loggedInUser.photoURL }
-                fetch(`http://localhost:5000/users`, {
+                fetch(`https://light-and-shadow.vercel.app/users`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

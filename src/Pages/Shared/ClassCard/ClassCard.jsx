@@ -23,7 +23,7 @@ const ClassCard = ({ singleClass }) => {
             })
         }
         const clickedInformation = { classId: id, clickedUserEmail: user.email }
-        axiosSecure.post("http://localhost:5000/selectedClass", clickedInformation)
+        axiosSecure.post("https://light-and-shadow.vercel.app/selectedClass", clickedInformation)
             .then(data => {
                 console.log(data);
                 if(data.data.insertedId){

@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
             // get and set token
             // instead of fetch here were using axios. 
            if(currentUser){
-            axios.post(`http://localhost:5000/jwt`,{
+            axios.post(`https://light-and-shadow.vercel.app/jwt`,{
                 email:currentUser.email
             })
             .then(data=>{
