@@ -7,6 +7,7 @@ import loadingJson from "../assets/loading.json"
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment/moment';
+import { Helmet } from 'react-helmet-async';
 
 const StudentDashboard = () => {
     const { user, paymentClass, setPaymentClass, loading } = useAuth();
@@ -93,6 +94,9 @@ const StudentDashboard = () => {
     // console.log(paymentHistory);
     return (
         <div className='mx-6 pt-20'>
+              <Helmet>
+                <title>Light & Shadow | Student</title>
+            </Helmet>
             <div className='text-center my-4'>
                 <button className={` p-3 w-40 rounded-tl-lg rounded-bl-lg transition-colors duration-300 border-r ${status === "pending" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={()=>handlePendingClasses()}>Pending Payment</button>
                 <button className={` p-3 w-40 transition-colors duration-300 border-r ${status === "enrolled" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={()=>handleEnrolledClasses()}>Enrolled Classes</button>

@@ -52,6 +52,7 @@ import np9 from "../../../assets/images/nature photography/9.jpg"
 import np10 from "../../../assets/images/nature photography/10.jpg"
 import np11 from "../../../assets/images/nature photography/11.jpg"
 import np12 from "../../../assets/images/nature photography/12.jpg"
+import { Fade } from "react-awesome-reveal";
 
 SwiperCore.use([Grid, Pagination, Autoplay]);
 const breakpoints = {
@@ -111,9 +112,9 @@ const Gallery = () => {
         <div>
             <div className="text-white flex  flex-col items-end">
                 <div className="lg:w-[40%] lg:text-start lg:-mb-36 mt-10 mx-6">
-                    <h3 className="font-poppins font-bold text-3xl">Our Gallery</h3>
-                    <h4 className=" font-semibold text-lg">A Visual Journey Through Extraordinary Moments</h4>
-                    <p className="  font-roboto">Discover a mesmerizing collection of extraordinary moments frozen in time, where each image tells a unique story. From breathtaking landscapes to candid portraits, our gallery showcases the artistry and skill nurtured within our photography school.</p>
+                   <Fade duration={3000}> <h3 className="font-poppins font-bold text-3xl">Our Gallery</h3></Fade>
+                    <Fade duration={3000}><h4 className=" font-semibold text-lg">A Visual Journey Through Extraordinary Moments</h4></Fade>
+                    <Fade duration={5000}><p className="  font-roboto">Discover a mesmerizing collection of extraordinary moments frozen in time, where each image tells a unique story. From breathtaking landscapes to candid portraits, our gallery showcases the artistry and skill nurtured within our photography school.</p></Fade>
                     <button className="my-btn my-4">Learn More</button>
                 </div>
             </div>

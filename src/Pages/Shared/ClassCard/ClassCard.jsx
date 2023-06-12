@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useAdmin from '../../../Hooks/useAdmin';
+import useInstructor from '../../../Hooks/useInstructor';
 
 const ClassCard = ({ singleClass }) => {
-    const { available_seats, _id, class_instructor_name, class_title, image_link, price } = singleClass;
+    const { available_seats, _id, class_instructor_name, class_title, image_link, price, students_in_class } = singleClass;
     // const [buttonDisabled, setButtonDisabled] = useState(false)
     const { user } = useAuth()
+    const [isAdmin, isAdminLoading] = useAdmin()
+    const [isInstructor, isInstructorLoading] = useInstructor()
     const [axiosSecure] = useAxiosSecure()
     const handleSelectCourse = (id) => {
         if (!user) {
@@ -55,8 +59,9 @@ const ClassCard = ({ singleClass }) => {
                     <h2 className="lg:text-2xl text-lg"><span className='font-semibold' >{class_title}</span> </h2>
                     <h2 className="lg:text-lg text-base">Course Instructor: <span className='font-semibold'>{class_instructor_name}</span></h2>
                     <h2 className="lg:text-lg text-base">Available Seat: <span className='font-semibold'>{available_seats}</span></h2>
+                    <h2 className="lg:text-lg text-base">Students in Class: <span className='font-semibold'>{students_in_class}</span></h2>
                     <h2 className="lg:text-lg text-base mb-2 ">Price: <span className='font-semibold'>$ {price}</span></h2>
-                    <button disabled={available_seats === 0 || user?.role === "admin" || user?.role === "instructor"} onClick={() => handleSelectCourse(_id)} className={`${available_seats !== 0 ? "bg-[#031003]" : "bg-[#111827] cursor-default"  }  py-1 px-2 rounded-lg hover:bg-[#111827] text-white cursor-pointer`}>Select Course</button>
+                    <button disabled={isAdmin|| isInstructor|| available_seats === 0 || user?.role === "admin" || user?.role === "instructor"} onClick={() => handleSelectCourse(_id)} className={`${available_seats === 0 || isAdmin || isInstructor ? "bg-[#031003] cursor-default" : "bg-[#111827] hover:bg-[#111827] cursor-pointer"  }  py-1 px-2 rounded-lg  text-white cursor-pointer`}>Select Course</button>
                 </div>
             </div>
 

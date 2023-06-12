@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ClassCard from '../Shared/ClassCard/ClassCard';
+import { Helmet } from 'react-helmet-async';
 
 
 const SingleInstructor = () => {
@@ -19,6 +20,9 @@ const SingleInstructor = () => {
     // console.log(classes);
     return (
         <div className='lg:w-[80%] w-[90%] pt-20 mx-auto'>
+              <Helmet>
+                <title>Light & Shadow | Instructor</title>
+            </Helmet>
             {
                classes && classes.map((singleClass)=><ClassCard key={singleClass._id} singleClass={singleClass}></ClassCard>)
             }

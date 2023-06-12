@@ -7,6 +7,7 @@ import useAuth from '../../Hooks/useAuth';
 import axios from 'axios';
 import Lottie from "lottie-react";
 import loadingJson from "../../assets/loading.json"
+import { Fade } from 'react-awesome-reveal';
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([])
@@ -17,7 +18,7 @@ const Instructors = () => {
     }
     
     const page = 1;
-    const {data:loadedInstructors=[], isLoading, refetch} = useQuery({
+    const {data:loadedInstructors=[], isLoading:isInstructorsLoading , refetch} = useQuery({
         queryKey: ["loadedInstructors", user?.email ],
         queryFn: async ()=>{
             const data = await axios.get("http://localhost:5000/instructors");
@@ -25,7 +26,7 @@ const Instructors = () => {
            return data.data
         },
     }) 
-    if(isLoading) {
+    if(isInstructorsLoading) {
         return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
       }
 
@@ -41,8 +42,8 @@ const Instructors = () => {
                 <title>Light & Shadow | Instructors</title>
             </Helmet>
             <div className='text-white  pt-20 lg:px-10 px-4 mb-4'>
-                <h3 className='font-poppins text-3xl text-center'>Meet Our Talented Instructors</h3>
-                <p className='font-roboto'>Light & Shadow is proud to have a team of experienced and passionate instructors who are dedicated to helping you enhance your photography skills. Each instructor brings a unique perspective and expertise, ensuring that you receive comprehensive guidance in various aspects of photography. Whether you're a beginner or an advanced photographer, our instructors are here to inspire, educate, and support you on your creative journey. Explore their profiles below to learn more about their backgrounds, specialties, and teaching approach</p>
+                <Fade duration={3000}><h3 className='font-poppins text-3xl text-center'>Meet Our Talented Instructors</h3></Fade>
+         <Fade duration={5000}>       <p className='font-roboto'>Light & Shadow is proud to have a team of experienced and passionate instructors who are dedicated to helping you enhance your photography skills. Each instructor brings a unique perspective and expertise, ensuring that you receive comprehensive guidance in various aspects of photography. Whether you're a beginner or an advanced photographer, our instructors are here to inspire, educate, and support you on your creative journey. Explore their profiles below to learn more about their backgrounds, specialties, and teaching approach</p></Fade>
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mx-6 overflow-hidden'>
                 {

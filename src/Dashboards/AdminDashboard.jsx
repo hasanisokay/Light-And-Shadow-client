@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import loadingJson from '../assets/loading.json';
 import Lottie from "lottie-react";
+import { Helmet } from 'react-helmet-async';
 
 const AdminDashboard = () => {
   const [view, setView] = useState("allClasses")
@@ -186,6 +187,9 @@ const AdminDashboard = () => {
   }
   return (
     <div className='mx-6 pt-20'>
+        <Helmet>
+                <title>Light & Shadow | Admin</title>
+            </Helmet>
       <div className='text-center my-4'>
         <button className={` p-3 w-40 transition-colors rounded-tl-lg rounded-bl-lg duration-300 border-r ${view === "allClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleShowAllClasses()}>All Classes</button>
         <button className={` p-3 w-40 rounded-tr-lg rounded-br-lg transition-colors duration-300 border-r ${view === "users" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleShowUsers()}>All Users</button>

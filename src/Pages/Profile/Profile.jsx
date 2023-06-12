@@ -1,10 +1,14 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
     const {user}=useAuth()
     return (
         <div className='pt-20 text-white'>
+              <Helmet>
+                <title>Light & Shadow | Profile</title>
+            </Helmet>
             <h2 className='text-4xl mb-6 font-poppins  font-semibold text-center'>Welcome, {user?.displayName} </h2>
             <div className='flex flex-col items-center'>
                 <img src={user?.photoURL} className='w-[300px] h-[200px] rounded border-4 border-cyan-800' alt="" />

@@ -3,6 +3,7 @@ import React from 'react';
 import CheckOutForm from './CheckOutForm';
 import useAuth from '../../Hooks/useAuth';
 import { loadStripe } from '@stripe/stripe-js';
+import { Helmet } from 'react-helmet-async';
 const stripePromise = loadStripe(import.meta.env.VITE_Payement_Gateway_Pk);
 
 const Payment = () => {
@@ -10,6 +11,9 @@ const Payment = () => {
     console.log(paymentClass);
     return (
         <div className='mx-6 pt-20 text-white'>
+              <Helmet>
+                <title>Light & Shadow | Payment</title>
+            </Helmet>
             <h1 className='text-3xl font-semibold text-center '>Pay With Card</h1>
            {
             paymentClass &&  <div className='lg:ml-8 ml-2'>

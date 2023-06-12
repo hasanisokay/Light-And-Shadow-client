@@ -6,18 +6,33 @@ import bg from "../../../assets/images/gallery-bg.png"
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import "./style.css"
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useAuth from '../../../Hooks/useAuth';
+import { Fade } from 'react-awesome-reveal';
 const PopularInstructors = () => {
     const [instructors, setInstructors] = useState([]);
-    
+    const [axiosSecure] = useAxiosSecure();
     const navigate = useNavigate()
+    const {user} = useAuth()
     const handleInstractor = (id) => {
         navigate(`/instructor/${id}`)
     }
+    
+    
+    const { data: loadedInstructors = [], isLoading:isInstructorsLoading, refetch: refetchInstructors, error: instructorsError } = useQuery({
+        queryKey: ["loadedInstructors", user?.email],
+        queryFn: async () => {
+            const data = await axiosSecure.get("http://localhost:5000/instructors/popular")
+            setInstructors(data.data);
+            return data.data;
+        }
+    })
 
-    useEffect(() => {
-        axios("http://localhost:5000/instructors/popular")
-            .then(data => setInstructors(data.data))
-    }, [])
+    // useEffect(() => {
+    //     axios("http://localhost:5000/instructors/popular")
+    //         .then(data => setInstructors(data.data))
+    // }, [])
     return (
         <div className='mx-6 mt-6 flex lg:flex-row flex-col-reverse md:gap-4 md:items-center justify-around md:flex-row  lg:items-center'>
             <div className='grid grid-cols-2 md-[50%] lg:w-[50%] lg:gap-2 gap-4'>
@@ -36,8 +51,8 @@ const PopularInstructors = () => {
             <div className='lg:w-[60%] md:w-[50%]'>
                 <div className='text-white flex flex-col items-end'>
                     <div className='text-white' >
-                        <h1 className='font-poppins font-semibold lg:text-3xl text-xl'>Discover Our Popular Instructors</h1>
-                        <p className='mt-4'>Step into the world of photography with guidance from our popular instructors, who have captivated students with their expertise and passion. Each instructor brings a unique blend of artistic vision and technical mastery, making them highly sought-after mentors in the field. Whether you're a novice photographer or an experienced shutterbug, our popular instructors are here to inspire and guide you on your creative journey. From their engaging teaching styles to their ability to ignite a love for photography, our instructors have garnered a reputation for delivering transformative learning experiences..</p>
+                        <Fade duration={3000}><h1 className='font-poppins font-semibold lg:text-3xl text-xl'>Discover Our Popular Instructors</h1></Fade>
+                     <Fade duration={5000}>   <p className='mt-4'>Step into the world of photography with guidance from our popular instructors, who have captivated students with their expertise and passion. Each instructor brings a unique blend of artistic vision and technical mastery, making them highly sought-after mentors in the field. Whether you're a novice photographer or an experienced shutterbug, our popular instructors are here to inspire and guide you on your creative journey. From their engaging teaching styles to their ability to ignite a love for photography, our instructors have garnered a reputation for delivering transformative learning experiences..</p></Fade>
                         <Link to="/instructors"><button className='my-btn my-4'>See All Instructors</button></Link>
                     </div>
                 </div>

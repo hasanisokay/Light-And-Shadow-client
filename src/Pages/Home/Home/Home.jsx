@@ -5,6 +5,7 @@ import Gallery from '../Gallery/Gallery';
 import PopularClasses from '../PopularClasses/PopularClasses';
 import PopularInstructors from '../PopularInstructors/PopularInstructors';
 import TypewriterText from '../TypeWriter/TypewriterText';
+import Feedback from '../Feedback/Feedback';
 
 const Home = () => {
     return (
@@ -18,6 +19,7 @@ const Home = () => {
             <PopularClasses></PopularClasses>
             <PopularInstructors></PopularInstructors>
             <Gallery></Gallery>
+            <Feedback></Feedback>
         </div>
     );
 };
