@@ -6,7 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 import loadingJson from '../assets/loading.json';
 import Lottie from "lottie-react";
 import { Helmet } from 'react-helmet-async';
-
+import { FaUsers } from 'react-icons/fa';
+import { MdClass } from "react-icons/md";
 const AdminDashboard = () => {
   const [view, setView] = useState("allClasses")
   const { user } = useAuth()
@@ -190,9 +191,9 @@ const AdminDashboard = () => {
         <Helmet>
                 <title>Light & Shadow | Admin</title>
             </Helmet>
-      <div className='text-center my-4'>
-        <button className={` p-3 w-40 transition-colors rounded-tl-lg rounded-bl-lg duration-300 border-r ${view === "allClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleShowAllClasses()}>All Classes</button>
-        <button className={` p-3 w-40 rounded-tr-lg rounded-br-lg transition-colors duration-300 border-r ${view === "users" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleShowUsers()}>All Users</button>
+      <div className='flex justify-center my-4'>
+        <button className={` p-3 w-40 transition-colors rounded-tl-lg flex items-center rounded-bl-lg duration-300 border-r ${view === "allClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleShowAllClasses()}><MdClass className='inline'/> All Classes</button>
+        <button className={` p-3 w-40 rounded-tr-lg rounded-br-lg transition-colors flex items-center duration-300 border-r ${view === "users" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleShowUsers()}><FaUsers className='w-8 inline'/>All Users</button>
       </div>
       {
         view === "users" && <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>

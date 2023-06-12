@@ -5,6 +5,7 @@ import bannerImg from "../../../assets/images/slider-img.png"
 import { useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Fade, Slide } from "react-awesome-reveal";
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -40,7 +41,7 @@ const Banner = () => {
                             <Fade>
                                 <p className='text-base px-1 font-roboto' > Fuel your passion for photography with our comprehensive programs designed for both beginners and enthusiasts.</p>
                             </Fade>
-                            <button className='my-btn my-4'>Learn More</button>
+                            <Link to='/classes'><button className="my-btn my-4">See All Classes</button></Link>
                         </div>
                     </Fade>
                     <Fade duration={2000}>
@@ -49,7 +50,7 @@ const Banner = () => {
                             <Fade>
                                 <p className='text-base px-1 font-roboto' > Nurture your passion for photography and transform it into a medium of artistic expression. Learn how to communicate your unique perspective through captivating visuals.</p>
                             </Fade>
-                            <button className='my-btn my-4'>Learn More</button>
+                            <Link to='/classes'><button className="my-btn my-4">See All Classes</button></Link>
                         </div>
                     </Fade>
                     <Fade duration={2000}>
@@ -58,7 +59,7 @@ const Banner = () => {
                             <Fade>
                                 <p className='text-base px-1 font-roboto' >Discover the joy of expressing your artistic vision through photography at our school. Unleash your creativity and capture stunning moments that inspire.</p>
                             </Fade>
-                            <button className='my-btn my-4'>Learn More</button>
+                            <Link to='/classes'><button className="my-btn my-4">See All Classes</button></Link>
                         </div>
                     </Fade>
 

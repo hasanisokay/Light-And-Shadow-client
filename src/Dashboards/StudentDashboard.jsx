@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment/moment';
 import { Helmet } from 'react-helmet-async';
+import { FaChalkboard, FaDollarSign, FaWallet } from 'react-icons/fa';
 
 const StudentDashboard = () => {
     const { user, paymentClass, setPaymentClass, loading } = useAuth();
@@ -97,10 +98,10 @@ const StudentDashboard = () => {
               <Helmet>
                 <title>Light & Shadow | Student</title>
             </Helmet>
-            <div className='text-center my-4'>
-                <button className={` p-3 w-40 rounded-tl-lg rounded-bl-lg transition-colors duration-300 border-r ${status === "pending" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={()=>handlePendingClasses()}>Pending Payment</button>
-                <button className={` p-3 w-40 transition-colors duration-300 border-r ${status === "enrolled" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={()=>handleEnrolledClasses()}>Enrolled Classes</button>
-                <button className={` p-3 w-40 rounded-tr-lg rounded-br-lg transition-colors duration-300 border-r ${status === "" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={()=>handlePaymentHistory()} >Payment History</button>
+            <div className='flex justify-center my-4'>
+                <button className={` p-3 text-sm w-40 rounded-tl-lg rounded-bl-lg gap-0.5 transition-colors flex items-center duration-300 border-r ${status === "pending" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={()=>handlePendingClasses()}><FaWallet /> Pending Payment</button>
+                <button className={` p-3 text-sm w-40 transition-colors flex items-center gap-0.5 duration-300 border-r ${status === "enrolled" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={()=>handleEnrolledClasses()}><FaChalkboard /> Enrolled Classes</button>
+                <button className={` p-3 text-sm w-40 rounded-tr-lg rounded-br-lg flex gap-0.5 items-center transition-colors duration-300 border-r ${status === "" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={()=>handlePaymentHistory()}><FaDollarSign/> Payment History</button>
             </div>
 
             {selectedClass ? (
