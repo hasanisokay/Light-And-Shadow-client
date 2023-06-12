@@ -38,13 +38,13 @@ const Login = () => {
                         <Lottie animationData={lottieLogin} className='w-full' />
                     </div>
                     <div className="card  w-full max-w-sm shadow-2xl bg-[#d7d2b7]">
-                        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+                        <form className="card-body text-black" onSubmit={handleSubmit(onSubmit)}>
                             <h3 className='font-poppins font-semibold text-2xl text-center'>Login Please</h3>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
+                                <input type="email" name='email' {...register("email", { required: true })} placeholder="email" className="input text-black input-bordered" />
                                 {errors.email && <span className='text-red-600'>Email is required</span>}
                             </div>
                             <div className="form-control flex">
@@ -56,7 +56,7 @@ const Login = () => {
                                     minLength: 6,
                                     maxLength: 20,
                                     pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z])/
-                                })} placeholder="password" className=" w-full input input-bordered" />
+                                })} placeholder="password" className=" w-full input text-black input-bordered" />
                                 <div className='flex mt-2 items-center gap-4 mx-2'>
                                     <FaEye className='cursor-pointer' onClick={() => passwordType === "password" ? setPasswordType("text") : setPasswordType("password")} />
                                     <p className='text-xs font-roboto cursor-pointer' onClick={() => passwordType === "password" ? setPasswordType("text") : setPasswordType("password")}>{passwordType === "password" ? "Show Password" : "Hide Password"} </p>

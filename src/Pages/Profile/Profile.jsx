@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 const Profile = () => {
     const {user}=useAuth()
     return (
-        <div className='pt-20 text-white'>
+        <div className='pt-20'>
               <Helmet>
                 <title>Light & Shadow | Profile</title>
             </Helmet>

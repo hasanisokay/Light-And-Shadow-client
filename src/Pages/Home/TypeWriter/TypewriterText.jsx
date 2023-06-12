@@ -16,7 +16,7 @@ const TypewriterText = () => {
     ];
     return (
         <div className='lg:relative lg:-top-32 lg:ml-6 lg:mx-auto mx-6'>
-            <h1 className='lg:text-2xl text-xl font-roboto  text-center lg:text-left'>
+            <h1 className='lg:text-2xl text-xl font-roboto italic text-center lg:text-left'>
                 <Typewriter
                     words={textPhrases}
                     loop={true}

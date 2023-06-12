@@ -64,7 +64,7 @@ const ClassCard = ({ singleClass }) => {
                     {/* lg:w-[300px] lg:h-[250px] md:h-[250px] md:w-[200px] w-full h-full */}
                     <img src={image_link} className='lg:max-w-[400px] lg:min-w-[400px] md:max-w-[300px] md:min-w-[300px] lg:max-h-[280px] lg:min-h-[280px] md:max-h-[300px] md:min-h-[300px] max-w-full min-w-full max-h-[200px] min-h-[200px]' alt="class" />
                 </figure>
-                <div className="mx-4 mb-4 md:mb-0 lg:mb-0 lg:ms-2 lg:w-full md:w-[99%] md:mx-8">
+                <div className="pl-4 mb-4 md:mb-0 lg:mb-0 lg:ms-2 lg:w-full md:w-[99%] text-black flex flex-col items-start justify-center w-full md:mx-8 ">
                     <h2 className="lg:text-2xl text-lg"><span className='font-semibold' >{class_title}</span> </h2>
                     <h2 className="lg:text-lg text-base">Course Instructor: <span className='font-semibold'>{class_instructor_name}</span></h2>
                     <h2 className="lg:text-lg text-base">Available Seat: <span className='font-semibold'>{available_seats}</span></h2>

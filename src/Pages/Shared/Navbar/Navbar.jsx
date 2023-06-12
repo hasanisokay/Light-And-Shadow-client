@@ -26,21 +26,21 @@ const Navbar = () => {
             (user && <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard/student"}><FaChalkboardTeacher/> Dashboard</NavLink></li>)
             )
         }
-        <li><Link onClick={()=>setThemeSwitch(!themeSwitch)}> <FaMoon/> {themeSwitch ? "Light Theme": "Dark Theme"} </Link></li>
+        <li><span onClick={()=>setThemeSwitch(!themeSwitch)}> <FaMoon/> {themeSwitch ? "Light Theme": "Dark Theme"} </span></li>
     </>
     return (
         <>
-            <div className={`navbar fixed z-50 w-full ${pathname ==="/" && "lg:w-[30%] lg:bg-opacity-0"}  bg-black text-white max-w-screen-xl bg-opacity-30`}>
+            <div className={`navbar fixed z-50 w-full bg-black text-white max-w-screen-xl `}>
                 <div className="navbar-start">
                     <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost">
-                            <svg xmlns="http://www.w3.org/2000/svg" className={`${themeSwitch ?"":"text-black"} h-5 w-5`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`text-[#fad932] h-5 w-5`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-compact z-50 dropdown-content mt-4 p-2 border-2 font-bold bg-[#031003] bg-opacity-25 hover:bg-opacity-95 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-compact z-50 dropdown-content mt-4 p-2 border-2 font-bold bg-[#031003] bg-opacity-95 rounded-box w-52">
                             {navOptions}
                         </ul>
                     </div>
-                    <Link className='' to="/"><img className={`w-36 ${themeSwitch ? "invert brightness-0":""}`} src={logo} alt="" /></Link>
+                    <Link className='' to="/"><img className={`w-36 invert brightness-0`} src={logo} alt="" /></Link>
                 </div>
                 <div className="navbar-end">
                 {user ? (<div className="dropdown dropdown-end">
@@ -50,13 +50,10 @@ const Navbar = () => {
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-[#031003] bg-opacity-80 hover:bg-opacity-95 w-52 border-2 rounded-box ">
-                        <li className='hover:bg-[#fad932] transform duration-300 hover:rounded hover:text-lg' ><Link to={"/profile"}>Profile</Link></li>
+                        <li className='hover:bg-[#fad932] transform duration-300 hover:rounded hover:text-lg' ><NavLink className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/profile"}>Profile</NavLink></li>
                         <li className='hover:bg-[#fad932] transform duration-300 hover:rounded hover:text-lg'><Link onClick={()=>logOut()}>Logout</Link></li>
                     </ul>
-                </div>) : <div>
-                <Link to={"/login"} className={`${themeSwitch?"text-white":"text-black"}`} >Login</Link>
-                
-                </div> }
+                </div>) : <Link to={"/login"} className="text-[#fad932]" >Login</Link>}
             </div>
             </div>
         </>

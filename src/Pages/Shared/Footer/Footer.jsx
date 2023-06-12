@@ -28,7 +28,7 @@ const Footer = () => {
                 </div>
                 <div className='flex flex-col w-full justify-center items-center'>
 
-                    <Link className='' to="/"><img className={`${themeSwitch ? "invert brightness-0":""}w-52`} src={logo} alt="" /></Link>
+                    <Link className='' to="/"><img className={`w-52 ${themeSwitch ? "invert brightness-0":""}`} src={logo} alt="" /></Link>
                     <div className="flex gap-4 w-full justify-center ">
                         <Link><FaTwitter className='w-10 h-10' /></Link>
                         <Link><FaFacebookSquare className='w-10 h-10' /></Link>

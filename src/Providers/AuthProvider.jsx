@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [paymentClass, setPaymentClass] = useState([])
-    const [themeSwitch, setThemeSwitch] = useState(false)
+    const [themeSwitch, setThemeSwitch] = useState(true)
     
 
     // registering user to firebase
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser);
-            console.log(currentUser);
+            // console.log(currentUser);
             // get and set token
             // instead of fetch here were using axios. 
            if(currentUser){

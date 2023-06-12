@@ -73,7 +73,7 @@ const SignUp = () => {
             <Lottie animationData={lottiesignup} className='w-full' />
           </div>
           <div className="card w-full shadow-2xl bg-[#d7d2b7]">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body text-black">
               <h3 className='font-poppins font-semibold text-2xl text-center'>Sign Up</h3>
               <div className="form-control">
                 <label className="label">

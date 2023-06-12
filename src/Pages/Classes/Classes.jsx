@@ -13,19 +13,19 @@ import { Fade } from 'react-awesome-reveal';
 const Classes = () => {
     const [classes, setClasses] = useState([])
     const {user} = useAuth()
-    const page = 1; 
-
-    const {data: loadedClasses=[], isLoading:isClassesLoading, refetch, error} = useQuery({
-        queryKey:["loadedClasses", page],
-        queryFn: async()=>{
+    const {data: loadedClasses=[], isLoading:isClassesLoading, refetch:refetchClasses, error:classesError} = useQuery({
+        queryKey:["loadedClasses", user?.email],
+        queryFn: async ()=>{
             const data = await axios.get("https://light-and-shadow.vercel.app/classes")
-            setClasses(loadedClasses);
+            // console.log("after load", data.data);
+            setClasses(data.data);
             return data.data
         }
     }) 
+    // console.log(isClassesLoading, classes);
     if(isClassesLoading) {
         return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
-      }
+    }
     return (
         <div className='mx-6'>
               <Helmet>

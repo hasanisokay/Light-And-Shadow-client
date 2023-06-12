@@ -117,8 +117,7 @@ const Gallery = () => {
                 <div className="lg:w-[40%] lg:text-start lg:-mb-36 mt-10 mx-6">
                    <Fade duration={3000}> <h3 className="font-poppins font-bold text-3xl">Our Gallery</h3></Fade>
                     <Fade duration={3000}><h4 className=" font-semibold text-lg">A Visual Journey Through Extraordinary Moments</h4></Fade>
-                    <Fade duration={5000}><p className="  font-roboto">Discover a mesmerizing collection of extraordinary moments frozen in time, where each image tells a unique story. From breathtaking landscapes to candid portraits, our gallery showcases the artistry and skill nurtured within our photography school.</p></Fade>
-                    <Link to='/classes'><button className="my-btn my-4">See All Classes</button></Link>
+                    <Fade duration={5000}><p className="  font-roboto mb-4">Discover a mesmerizing collection of extraordinary moments frozen in time, where each image tells a unique story. From breathtaking landscapes to candid portraits, our gallery showcases the artistry and skill nurtured within our photography school.</p></Fade>
                 </div>
             </div>
             <div className="w-full my-10 md:my-32">

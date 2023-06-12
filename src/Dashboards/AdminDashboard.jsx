@@ -191,12 +191,12 @@ const AdminDashboard = () => {
         <Helmet>
                 <title>Light & Shadow | Admin</title>
             </Helmet>
-      <div className='flex justify-center my-4'>
-        <button className={` p-3 w-40 transition-colors rounded-tl-lg flex items-center rounded-bl-lg duration-300 border-r ${view === "allClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleShowAllClasses()}><MdClass className='inline'/> All Classes</button>
-        <button className={` p-3 w-40 rounded-tr-lg rounded-br-lg transition-colors flex items-center duration-300 border-r ${view === "users" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleShowUsers()}><FaUsers className='w-8 inline'/>All Users</button>
+      <div className='flex text-black justify-center my-4'>
+        <button className={` p-3 w-40 transition-colors rounded-tl-lg flex items-center rounded-bl-lg duration-300 border-r text-sm ${view === "allClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleShowAllClasses()}><MdClass className='inline'/> All Classes</button>
+        <button className={` p-3 w-40 rounded-tr-lg rounded-br-lg transition-colors flex items-center duration-300 border-r text-sm ${view === "users" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleShowUsers()}><FaUsers className='w-8 inline'/>All Users</button>
       </div>
       {
-        view === "users" && <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
+        view === "users" && <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 text-black'>
           {allUsers.map(user => <div key={user._id}>
             <div className="card w-96 bg-[#d7d2b7] shadow-xl">
               {user?.image && <figure className='h-56'><img src={user.image} className='h-full w-full' alt="user" /></figure>}
@@ -214,7 +214,7 @@ const AdminDashboard = () => {
         </div>
       }
       {
-        view === "allClasses" && <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
+        view === "allClasses" && <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 text-black'>
           {
             allClasses.map((singleClass) => <div key={singleClass?._id}>
               <div className="card w-96 bg-[#d7d2b7] shadow-xl">
@@ -229,9 +229,9 @@ const AdminDashboard = () => {
                   <p className='text-lg'>Status: <span className='font-semibold'>{singleClass?.status}</span></p>
                   {singleClass.feedback && <p className='text-lg'>Feedback <span className='font-semibold'>{singleClass?.feedback}</span></p>}
                   <div className={`flex gap-6 ${singleClass.status === 'approved' && "hidden"}`}  >
-                    <button onClick={() => handleApprove(singleClass._id)} disabled={singleClass.status === "denied"} className={` ${singleClass.status === "denied" ? "bg-gray-500 cursor-default" : "bg-[#031003] hover:bg-[#111827] cursor-pointer"} py-1 px-2 rounded-lg  text-white `}  >Approve</button>
-                    <button onClick={() => handleDeny(singleClass._id)} disabled={singleClass.status === "denied"} className={`${singleClass.status === "denied" ? "bg-gray-500 cursor-default" : "bg-red-500 cursor-pointer"} py-1 px-2 rounded-lg text-white`}>Deny</button>
-                    <button onClick={() => handleFeedback(singleClass._id)} disabled={singleClass.feedback || singleClass.status !== "denied" } className={`${singleClass.feedback ? "bg-gray-500 cursor-default" : "bg-[#031003] cursor-pointer"} py-1 px-2 rounded-lg text-white`}>Send Feedback</button>
+                    <button onClick={() => handleApprove(singleClass._id)} disabled={singleClass.status === "denied"} className={`text-xs ${singleClass.status === "denied" ? "bg-gray-500 cursor-default" : "bg-[#031003] hover:bg-[#111827] cursor-pointer"} py-1 px-1 rounded-lg  `}  >Approve</button>
+                    <button onClick={() => handleDeny(singleClass._id)} disabled={singleClass.status === "denied"} className={`text-xs ${singleClass.status === "denied" ? "bg-gray-500 cursor-default" : "bg-red-500 cursor-pointer"} py-1 px-1 rounded-lg `}>Deny</button>
+                    <button onClick={() => handleFeedback(singleClass._id)} disabled={singleClass.feedback || singleClass.status !== "denied" } className={`${singleClass.feedback ? "bg-gray-500 cursor-default" : "bg-[#031003] cursor-pointer"} py-1 px-1 text-xs rounded-lg`}>Send Feedback</button>
                   </div>
                 </div>
 

@@ -22,7 +22,7 @@ const Instructors = () => {
         queryKey: ["loadedInstructors", user?.email ],
         queryFn: async ()=>{
             const data = await axios.get("https://light-and-shadow.vercel.app/instructors");
-            setInstructors(loadedInstructors);
+            setInstructors(data.data);
            return data.data
         },
     }) 
@@ -49,7 +49,7 @@ const Instructors = () => {
                 {
                     instructors.map((instructor, index) => <div key={instructor._id} className="bg-[#d7d2b7] overflow-hidden hover:scale-105 transition rounded-t-2xl rounded-b-md ">
                         <figure className='w-full h-64'><img src={instructor.image} className='h-full w-full' alt="instructor" /></figure>
-                        <div className="mx-4 my-4">
+                        <div className="mx-4 my-4 text-black">
                             <h2 className="text-xl"> Name: <span className='font-semibold' >{instructor.name}</span> </h2>
                             <h2 className="text-lg ">Email: <span className='font-semibold'>{instructor.email}</span></h2>
                             <h2 className="text-lg">Total students in class: <span className='font-semibold'>{instructor.students_in_class}</span></h2>

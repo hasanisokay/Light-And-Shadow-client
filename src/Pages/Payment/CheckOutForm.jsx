@@ -75,6 +75,8 @@ const CheckOutForm = () => {
                 
                 axiosSecure.patch(`/selectedClass/${paymentClass._id}`)
                 .then(res=>console.log("from enrolled update", res))
+                axiosSecure.get(`/updateSeatAndStudent/?id=${paymentClass._id}`)
+                .then(res=>console.log("from update number", res.data))
 
                 Swal.fire({
                     position: 'top-end',

@@ -85,15 +85,15 @@ const InstructorDashboard = () => {
                 <title>Light & Shadow | Instructor</title>
             </Helmet>
             <div className='justify-center my-4 flex'>
-                <button className={` p-3 w-40 flex items-center gap-0.5 transition-colors rounded-tl-lg rounded-bl-lg duration-300 border-r ${view === "myClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleAllClasses()}> <FaChalkboard/> My Classes</button>
-                <button className={` p-3 w-40 flex items-center gap-0.5 rounded-tr-lg rounded-br-lg transition-colors duration-300 border-r ${view === "addClass" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleAddClass()}><FaClipboardList/> Add A class</button>
+                <button className={`text-sm p-3 w-40 flex items-center gap-0.5 transition-colors rounded-tl-lg rounded-bl-lg duration-300 border-r ${view === "myClasses" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleAllClasses()}> <FaChalkboard/> My Classes</button>
+                <button className={`text-sm p-3 w-40 flex items-center gap-0.5 rounded-tr-lg rounded-br-lg transition-colors duration-300 border-r ${view === "addClass" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handleAddClass()}><FaClipboardList/> Add A class</button>
             </div>
             <div>
                 {
                     view === "addClass" && (
                         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                             {({ isSubmitting, setFieldValue }) => (
-                                <Form className='bg-[#d7d2b7] lg:w-[50%] mx-auto px-4 py-4 rounded-lg'>
+                                <Form className='bg-[#d7d2b7] text-black lg:w-[50%] mx-auto px-4 py-4 rounded-lg'>
                                     <div>
                                         <label htmlFor="className">Class Name</label>
                                         <Field type="text" id="className" className="py-2 block px-2 w-[90%] my-2 rounded" name="className" placeholder="Enter class name" />

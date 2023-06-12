@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment/moment';
 import { Helmet } from 'react-helmet-async';
 import { FaChalkboard, FaDollarSign, FaWallet } from 'react-icons/fa';
+import axios from 'axios';
 
 const StudentDashboard = () => {
     const { user, paymentClass, setPaymentClass, loading } = useAuth();
@@ -17,43 +18,54 @@ const StudentDashboard = () => {
     const navigate = useNavigate()
     const [axiosSecure] = useAxiosSecure()
     const [paymentHistory, setPaymentHistory] = useState([])
-
-    const { data: loadedClasses = [], isLoading: isSelectedClassesLoading, refetch: refetchSelectedClaas, error } = useQuery({
-        queryKey: ["loadedClasses", user?.email, status],
-        queryFn: async () => {
-            const data = await axiosSecure.get(`/getSelectedClass?email=${user?.email}&status=${status}`)
-            setSelectedClass(data.data);
-            return data.data;
-        }
-    })
+    const [isLoadingData, setIsLoadingData] = useState(false)
     const handlePendingClasses = () => {
         setStatus("pending");
-        refetchSelectedClaas()
+        setSelectedClass([])
+        // refetchSelectedClaas()
     };
     const handleEnrolledClasses = () => {
         setStatus("enrolled");
-        refetchSelectedClaas()
+        // setSelectedClass([])
+        // refetchSelectedClaas()
     };
     const handlePaymentHistory = () => {
         setStatus("")
-        refetchPaymentHistory()
+        setSelectedClass([])
+        // refetchPaymentHistory()
     }
+    useEffect(()=>{
+        axiosSecure.get(`/getSelectedClass?email=${user?.email}&status=${status}`)
+        .then(res=>setSelectedClass(res.data))
+    },[status, isLoadingData])
+    // console.log(selectedClass);
+    
+    useEffect(()=>{
+        axiosSecure.get(`/paymentHistory?email=${user?.email}`)
+        .then(res=>setPaymentHistory(res.data))
+    },[status])
+    // console.log(paymentHistory);
+    // const { data: loadedClasses = [], isLoading: isSelectedClassesLoading, refetch:refetchSelectedClaas, error:selectedClassError } = useQuery({
+    //     queryKey: ["loadedClasses", user?.email, status],
+    //     queryFn: async () => {
+    //         const data = await axiosSecure.get(`/getSelectedClass?email=${user?.email}&status=${status}`)
+    //         setSelectedClass(data.data);
+    //         console.log("from selectedClass", data.data);
+    //         return data.data;
+    //     }
+    // })
+    // const { data: loadedPaymentHistory = [], isLoading: isPaymentHistoryLoading, refetch: refetchPaymentHistory, error: paymentHisotryError } = useQuery({
+    //     queryKey: ["loadedPaymentHistory", user?.email],
+    //     queryFn: async () => {
+    //         const data = await axiosSecure.get(`/paymentHistory?email=${user?.email}`)
+    //         setPaymentHistory(data.data);
+    //         return data.data;
+    //     }
+    // // })
 
-    const { data: loadedPaymentHistory = [], isLoading: isPaymentHistoryLoading, refetch: refetchPaymentHistory, error: paymentHisotryError } = useQuery({
-        queryKey: ["loadedPaymentHistory", user?.email],
-        queryFn: async () => {
-            const data = await axiosSecure.get(`/paymentHistory?email=${user?.email}`)
-            setPaymentHistory(data.data);
-            return data.data;
-        }
-    })
-
-    if (isPaymentHistoryLoading || isSelectedClassesLoading) {
-        return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
-    }
-
-
-
+    // if (isPaymentHistoryLoading ) {
+    //     return <Lottie className='w-60 pt-20 h-72 mx-auto ' animationData={loadingJson} loop={true} />;
+    // }
 
     const handleDeleteClass = (id) => {
         Swal.fire({
@@ -76,7 +88,8 @@ const StudentDashboard = () => {
                                 'Class deleted.',
                                 'success'
                             )
-                            refetchSelectedClaas()
+                            setIsLoadingData(!isLoadingData)
+                            // refetchSelectedClaas()
                         }
                     })
             }
@@ -93,16 +106,16 @@ const StudentDashboard = () => {
                 <title>Light & Shadow | Student</title>
             </Helmet>
             <div className='flex justify-center my-4'>
-                <button className={` p-3 text-sm w-40 rounded-tl-lg rounded-bl-lg gap-0.5 transition-colors flex items-center duration-300 border-r ${status === "pending" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handlePendingClasses()}><FaWallet /> Pending Payment</button>
-                <button className={` p-3 text-sm w-40 transition-colors flex items-center gap-0.5 duration-300 border-r ${status === "enrolled" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleEnrolledClasses()}><FaChalkboard /> Enrolled Classes</button>
-                <button className={` p-3 text-sm w-40 rounded-tr-lg rounded-br-lg flex gap-0.5 items-center transition-colors duration-300 border-r ${status === "" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handlePaymentHistory()}><FaDollarSign /> Payment History</button>
+                <button className={` p-3 text-xs w-40 rounded-tl-lg rounded-bl-lg gap-0.5 transition-colors flex items-center duration-300 border-r ${status === "pending" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handlePendingClasses()}><FaWallet /> Pending Payment</button>
+                <button className={` p-3 text-xs w-40 transition-colors flex items-center gap-0.5 duration-300 border-r ${status === "enrolled" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleEnrolledClasses()}><FaChalkboard /> Enrolled Classes</button>
+                <button className={` p-3 text-xs w-40 rounded-tr-lg rounded-br-lg flex gap-0.5 items-center transition-colors duration-300 border-r ${status === "" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handlePaymentHistory()}><FaDollarSign /> Payment History</button>
             </div>
 
             {selectedClass ? (
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6'>
                     {selectedClass.map(singleClass => (
                         <div key={singleClass._id}>
-                            <div className="card w-96 bg-[#d7d2b7] shadow-xl">
+                            <div className="card w-96 text-black bg-[#d7d2b7] shadow-xl">
                                 <figure className='h-56'><img src={singleClass.image_link} className='h-full w-full' alt="" /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{singleClass.class_title}</h2>
@@ -122,7 +135,7 @@ const StudentDashboard = () => {
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
                 {
                     status === "" && paymentHistory.map(history => <div key={history._id}>
-                        <div className="card w-96 bg-[#d7d2b7] shadow-xl">
+                        <div className="card text-black w-96 bg-[#d7d2b7] shadow-xl">
                             <figure className='h-56'><img src={history?.paidForClass?.image_link} alt="class image" className='h-full w-full' /></figure>
                             <div className="card-body">
                                 <p>Class Title: <span className='font-semibold text-xl'>{history?.paidForClass?.class_title}</span></p>
