@@ -54,6 +54,7 @@ import np11 from "../../../assets/images/nature photography/11.jpg"
 import np12 from "../../../assets/images/nature photography/12.jpg"
 import { Fade } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 SwiperCore.use([Grid, Pagination, Autoplay]);
 const breakpoints = {
@@ -109,9 +110,10 @@ const breakpoints3 = {
 };
 
 const Gallery = () => {
+    const {themeSwitch} = useAuth()
     return (
         <div>
-            <div className="text-white flex  flex-col items-end">
+            <div className=" flex  flex-col items-end">
                 <div className="lg:w-[40%] lg:text-start lg:-mb-36 mt-10 mx-6">
                    <Fade duration={3000}> <h3 className="font-poppins font-bold text-3xl">Our Gallery</h3></Fade>
                     <Fade duration={3000}><h4 className=" font-semibold text-lg">A Visual Journey Through Extraordinary Moments</h4></Fade>
@@ -135,18 +137,18 @@ const Gallery = () => {
                         //   pagination={false}
                         className="mySwiper"
                     >
-                        <SwiperSlide><div><img src={rai1} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai2} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai3} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai4} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai5} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai6} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai7} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai8} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai9} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai10} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai12} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={rai13} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai1} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai2} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai3} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai4} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai5} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai6} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai7} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai8} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai9} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai10} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`}  alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai12} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`}  alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={rai13} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`}  alt="" /></div></SwiperSlide>
 
                     </Swiper>
                 </div>
@@ -162,19 +164,19 @@ const Gallery = () => {
                         //   pagination={false}
                         className="mySwiper"
                     >
-                        <SwiperSlide><div><img src={wlf1} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf2} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf3} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf4} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf5} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf6} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf7} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf8} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf9} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf10} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf11} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf12} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={wlf13} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf1} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf2} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf3} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf4} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf5} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf6} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf7} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf8} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf9} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf10} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf11} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf12} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={wlf13} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
                     </Swiper>
                 </div>
                 <div className="relative md:w-[260px] md:left-96 md:top-14 top-7 left-40 w-[80px] lg:top-6 lg:w-[400px]">
@@ -191,36 +193,36 @@ const Gallery = () => {
                     >
                         <SwiperSlide>
                             <div>
-                                <img src={img1} className="w-full border-4 rounded" alt="" />
+                                <img src={img1} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
                             <div>
-                                <img src={img2} className="w-full border-4 rounded" alt="" />
+                                <img src={img2} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
                             <div>
-                                <img src={img3} className="w-full border-4 rounded" alt="" />
+                                <img src={img3} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
                             <div>
-                                <img src={img4} className="w-full border-4 rounded" alt="" />
+                                <img src={img4} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" />
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide><div><img src={np1} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np2} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np3} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np4} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np5} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np6} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np7} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np8} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np9} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np10} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np11} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
-                        <SwiperSlide><div><img src={np12} className="w-full border-4 rounded" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np1} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np2} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np3} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np4} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np5} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np6} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np7} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np8} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np9} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np10} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np11} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div><img src={np12} className={`${themeSwitch ? "border-4":"border-black border-4"} w-full rounded`} alt="" /></div></SwiperSlide>
                     </Swiper>
                 </div>
             </div>

@@ -67,7 +67,7 @@ const SignUp = () => {
       <Helmet>
         <title>Light & Shadow | Sign Up</title>
       </Helmet>
-      <div className="hero min-h-screen bg-[#031003]">
+      <div className="hero min-h-screen pt-20">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <Lottie animationData={lottiesignup} className='w-full' />

@@ -32,7 +32,7 @@ const Login = () => {
             <Helmet>
                 <title>Light & Shadow | Sign in</title>
             </Helmet>
-            <div className="hero min-h-screen bg-[#031003]">
+            <div className="hero min-h-screen pt-20">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center md:w-1/2 lg:text-left">
                         <Lottie animationData={lottieLogin} className='w-full' />
@@ -67,7 +67,7 @@ const Login = () => {
                             </div>
 
                             <div className="form-control mt-6">
-                                <input className="bg-[#031003] py-1 rounded-full  text-white cursor-pointer" disabled={disable} type="submit" value="Login" />
+                                <input className="bg-[#031003] py-1 rounded-full text-white cursor-pointer" disabled={disable} type="submit" value="Login" />
                             </div>
                         </form>
                         <p className='text-center'><small className='font-semibold text-lg'>New Here? <Link to="/signup" className='text-blue-600'>Create an account</Link> </small></p>

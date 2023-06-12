@@ -2,14 +2,16 @@ import React from 'react';
 import { useContext } from 'react';
 import { NavLink ,Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import {FaChalkboardTeacher, FaGraduationCap, FaHome, FaShoppingCart, FaUserTie} from "react-icons/fa"
+import {FaChalkboardTeacher, FaGraduationCap, FaHome, FaMoon, FaShoppingCart, FaUserTie} from "react-icons/fa"
 import logo from "../../../assets/logo.png"
 import useInstructor from '../../../Hooks/useInstructor';
 import useAdmin from '../../../Hooks/useAdmin';
-// import useCart from '../../../Hooks/useCart';
-// import useAdmin from '../../../Hooks/useAdmin';
+import useThemeSwitch from '../../../Hooks/useThemeSwitch';
+
 const Navbar = () => {
-    const { user, logOut, loading } = useContext(AuthContext);
+
+    // const [handleThemeSwitch] = useThemeSwitch()
+    const { user, logOut, loading, themeSwitch, setThemeSwitch } = useContext(AuthContext);
     const {pathname} = useLocation()
     const [isAdmin, isAdminLoading] = useAdmin()
     const [isInstructor, isInstructorLoading] = useInstructor()
@@ -24,6 +26,7 @@ const Navbar = () => {
             (user && <li ><NavLink  className={({ isActive }) => (isActive ? 'active' : 'default')} to={"/dashboard/student"}><FaChalkboardTeacher/> Dashboard</NavLink></li>)
             )
         }
+        <li><Link onClick={()=>setThemeSwitch(!themeSwitch)}> <FaMoon/> {themeSwitch ? "Light Theme": "Dark Theme"} </Link></li>
     </>
     return (
         <>
@@ -31,13 +34,13 @@ const Navbar = () => {
                 <div className="navbar-start">
                     <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`${themeSwitch ?"":"text-black"} h-5 w-5`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact z-50 dropdown-content mt-4 p-2 border-2 font-bold bg-[#031003] bg-opacity-25 hover:bg-opacity-95 rounded-box w-52">
                             {navOptions}
                         </ul>
                     </div>
-                    <Link className='' to="/"><img className='invert brightness-0 w-36' src={logo} alt="" /></Link>
+                    <Link className='' to="/"><img className={`w-36 ${themeSwitch ? "invert brightness-0":""}`} src={logo} alt="" /></Link>
                 </div>
                 <div className="navbar-end">
                 {user ? (<div className="dropdown dropdown-end">
@@ -50,7 +53,10 @@ const Navbar = () => {
                         <li className='hover:bg-[#fad932] transform duration-300 hover:rounded hover:text-lg' ><Link to={"/profile"}>Profile</Link></li>
                         <li className='hover:bg-[#fad932] transform duration-300 hover:rounded hover:text-lg'><Link onClick={()=>logOut()}>Logout</Link></li>
                     </ul>
-                </div>) : <Link to={"/login"} >Login</Link>}
+                </div>) : <div>
+                <Link to={"/login"} className={`${themeSwitch?"text-white":"text-black"}`} >Login</Link>
+                
+                </div> }
             </div>
             </div>
         </>

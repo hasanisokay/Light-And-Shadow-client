@@ -17,6 +17,9 @@ const ClassCard = ({ singleClass }) => {
             return Swal.fire({
                 position: 'top-end',
                 icon: 'warning',
+                customClass:{
+                    title: "text-xl font-bold"
+                },
                 title: 'Please Login First',
                 showConfirmButton: false,
                 timer: 1000
@@ -25,11 +28,14 @@ const ClassCard = ({ singleClass }) => {
         const clickedInformation = { classId: id, clickedUserEmail: user.email }
         axiosSecure.post("https://light-and-shadow.vercel.app/selectedClass", clickedInformation)
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if(data.data.insertedId){
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
+                        customClass:{
+                            title: "text-xl font-semibold"
+                        },
                         title: 'Added successfully',
                         showConfirmButton: false,
                         timer: 1000
@@ -38,6 +44,9 @@ const ClassCard = ({ singleClass }) => {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'warning',
+                            customClass:{
+                                title: "text-xl font-semibold"
+                            },
                             title: 'Already added. Cant Add item twice',
                             showConfirmButton: false,
                             timer: 1500

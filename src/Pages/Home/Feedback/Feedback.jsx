@@ -27,7 +27,7 @@ const Feedback = () => {
                 >
                     {
                         feedbacks.map(feedback =>
-                            <div className=' w-full'>
+                            <div key={feedback._id} className=' w-full'>
                                 <div className="rounded-xl my-2 bg-[#d7d2b7] shadow-xl ">
                                         <div className='pt-2 flex flex-col items-center justify-center'>
                                             <div className='w-24 h-24 rounded-full overflow-hidden'><img src={feedback.image} className='w-full h-full object-cover' alt="Shoes" /></div>
@@ -46,7 +46,7 @@ const Feedback = () => {
                     }
 
                 </Carousel></div>
-            <div className='w-full text-white'>
+            <div className='w-full '>
                 <h1 className='text-3xl font-semibold font-poppins'>What Our Students Say</h1>
                 <Fade duration={5000}>
                 <p className='w-[70%]'>Discover what our students have to say about their experience at Light & Shadow. We take pride in nurturing talent, fostering creativity, and providing a supportive learning environment. Read their inspiring testimonials below and see how our photography school has made a positive impact on their artistic journey</p>

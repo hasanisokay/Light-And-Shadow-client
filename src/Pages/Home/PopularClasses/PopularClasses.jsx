@@ -14,7 +14,7 @@ const PopularClasses = () => {
     }, [])
     return (
         <div className='mx-6'>
-            <div className='text-white mb-4 ' >
+            <div className=' mb-4 ' >
                 <Fade duration={3000}>
                 <h1 className='font-poppins lg:text-3xl text-xl mt-2 text-center'>Popular Classes to Elevate Your Photography Skills</h1>
                 </Fade>

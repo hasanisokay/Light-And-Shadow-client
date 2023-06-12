@@ -2,11 +2,13 @@ import React from 'react';
 import { FaEnvelope, FaFacebookSquare, FaInstagram, FaLinkedinIn, FaLocationArrow, FaMapMarkerAlt, FaPhoneAlt, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from "../../../assets/logo.png"
+import useAuth from '../../../Hooks/useAuth';
 const Footer = () => {
+    const {themeSwitch} = useAuth()
     const date = new Date();
     const presentYear = date.getFullYear();
     return (
-        <footer className='font-poppins text-white'>
+        <footer className='font-poppins '>
             <div className="flex lg:flex-row  flex-col items-center">
                 <div className='p-10 w-full'>
                     <h3 className='font-bold lg:ml-20 my-2 text-3xl'>Contact US</h3>
@@ -26,7 +28,7 @@ const Footer = () => {
                 </div>
                 <div className='flex flex-col w-full justify-center items-center'>
 
-                    <Link className='' to="/"><img className='invert brightness-0 h-16 w-36' src={logo} alt="" /></Link>
+                    <Link className='' to="/"><img className={`${themeSwitch ? "invert brightness-0":""}w-52`} src={logo} alt="" /></Link>
                     <div className="flex gap-4 w-full justify-center ">
                         <Link><FaTwitter className='w-10 h-10' /></Link>
                         <Link><FaFacebookSquare className='w-10 h-10' /></Link>

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 
 const AboutUs = () => {
     return (
-        <div className='mx-6 pt-20 text-white '>
+        <div className='mx-6 pt-20'>
               <Helmet>
                 <title>Light & Shadow | About</title>
             </Helmet>

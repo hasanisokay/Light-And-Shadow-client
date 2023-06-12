@@ -18,37 +18,31 @@ const StudentDashboard = () => {
     const [axiosSecure] = useAxiosSecure()
     const [paymentHistory, setPaymentHistory] = useState([])
 
-
-    const handlePendingClasses = () => {
-        setStatus("pending");
-        refetchSelectedClaas()
-    };
-
-    const handleEnrolledClasses = () => {
-        setStatus("enrolled");
-        refetchSelectedClaas()
-    };
-
-    const { data: loadedClasses = [], isLoading:isSelectedClassesLoading, refetch:refetchSelectedClaas, error } = useQuery({
+    const { data: loadedClasses = [], isLoading: isSelectedClassesLoading, refetch: refetchSelectedClaas, error } = useQuery({
         queryKey: ["loadedClasses", user?.email, status],
         queryFn: async () => {
-
             const data = await axiosSecure.get(`/getSelectedClass?email=${user?.email}&status=${status}`)
             setSelectedClass(data.data);
             return data.data;
         }
     })
-
-
+    const handlePendingClasses = () => {
+        setStatus("pending");
+        refetchSelectedClaas()
+    };
+    const handleEnrolledClasses = () => {
+        setStatus("enrolled");
+        refetchSelectedClaas()
+    };
     const handlePaymentHistory = () => {
         setStatus("")
         refetchPaymentHistory()
     }
 
-    const { data: loadedPaymentHistory = [], isLoading:isPaymentHistoryLoading, refetch: refetchPaymentHistory, error: paymentHisotryError } = useQuery({
+    const { data: loadedPaymentHistory = [], isLoading: isPaymentHistoryLoading, refetch: refetchPaymentHistory, error: paymentHisotryError } = useQuery({
         queryKey: ["loadedPaymentHistory", user?.email],
         queryFn: async () => {
-            const data = await  axiosSecure.get(`/paymentHistory?email=${user?.email}`)
+            const data = await axiosSecure.get(`/paymentHistory?email=${user?.email}`)
             setPaymentHistory(data.data);
             return data.data;
         }
@@ -67,7 +61,7 @@ const StudentDashboard = () => {
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            customClass:{ title:"text-lg font-semibold", confirmButton:"mr-2 p-2", cancelButton:"p-2",  },
+            customClass: { title: "text-lg font-semibold", confirmButton: "mr-2 p-2", cancelButton: "p-2", },
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
@@ -81,8 +75,8 @@ const StudentDashboard = () => {
                                 'Deleted!',
                                 'Class deleted.',
                                 'success'
-                                )
-                                refetchSelectedClaas()
+                            )
+                            refetchSelectedClaas()
                         }
                     })
             }
@@ -95,13 +89,13 @@ const StudentDashboard = () => {
     // console.log(paymentHistory);
     return (
         <div className='mx-6 pt-20'>
-              <Helmet>
+            <Helmet>
                 <title>Light & Shadow | Student</title>
             </Helmet>
             <div className='flex justify-center my-4'>
-                <button className={` p-3 text-sm w-40 rounded-tl-lg rounded-bl-lg gap-0.5 transition-colors flex items-center duration-300 border-r ${status === "pending" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={()=>handlePendingClasses()}><FaWallet /> Pending Payment</button>
-                <button className={` p-3 text-sm w-40 transition-colors flex items-center gap-0.5 duration-300 border-r ${status === "enrolled" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={()=>handleEnrolledClasses()}><FaChalkboard /> Enrolled Classes</button>
-                <button className={` p-3 text-sm w-40 rounded-tr-lg rounded-br-lg flex gap-0.5 items-center transition-colors duration-300 border-r ${status === "" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={()=>handlePaymentHistory()}><FaDollarSign/> Payment History</button>
+                <button className={` p-3 text-sm w-40 rounded-tl-lg rounded-bl-lg gap-0.5 transition-colors flex items-center duration-300 border-r ${status === "pending" ? 'bg-[#fad932] font-semibold' : 'bg-zinc-400'} `} onClick={() => handlePendingClasses()}><FaWallet /> Pending Payment</button>
+                <button className={` p-3 text-sm w-40 transition-colors flex items-center gap-0.5 duration-300 border-r ${status === "enrolled" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handleEnrolledClasses()}><FaChalkboard /> Enrolled Classes</button>
+                <button className={` p-3 text-sm w-40 rounded-tr-lg rounded-br-lg flex gap-0.5 items-center transition-colors duration-300 border-r ${status === "" ? 'bg-[#fad932] font-semibold ' : 'bg-zinc-400'} `} onClick={() => handlePaymentHistory()}><FaDollarSign /> Payment History</button>
             </div>
 
             {selectedClass ? (
@@ -127,7 +121,7 @@ const StudentDashboard = () => {
             ) : <h1 className='text-white font-semibold text-2xl text-center my-6'></h1>}
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
                 {
-                 status ==="" &&  paymentHistory.map(history => <div key={history._id}>
+                    status === "" && paymentHistory.map(history => <div key={history._id}>
                         <div className="card w-96 bg-[#d7d2b7] shadow-xl">
                             <figure className='h-56'><img src={history?.paidForClass?.image_link} alt="class image" className='h-full w-full' /></figure>
                             <div className="card-body">
@@ -140,7 +134,7 @@ const StudentDashboard = () => {
                                 <p>Purchased Date: <span className='font-semibold'>{moment(history?.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</span> </p>
                             </div>
                         </div>
-                       
+
                     </div>)
                 }
             </div>

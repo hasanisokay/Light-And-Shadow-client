@@ -41,7 +41,7 @@ const Instructors = () => {
             <Helmet>
                 <title>Light & Shadow | Instructors</title>
             </Helmet>
-            <div className='text-white  pt-20 lg:px-10 px-4 mb-4'>
+            <div className='pt-20 lg:px-10 px-4 mb-4'>
                 <Fade duration={3000}><h3 className='font-poppins text-3xl text-center'>Meet Our Talented Instructors</h3></Fade>
          <Fade duration={5000}>       <p className='font-roboto'>Light & Shadow is proud to have a team of experienced and passionate instructors who are dedicated to helping you enhance your photography skills. Each instructor brings a unique perspective and expertise, ensuring that you receive comprehensive guidance in various aspects of photography. Whether you're a beginner or an advanced photographer, our instructors are here to inspire, educate, and support you on your creative journey. Explore their profiles below to learn more about their backgrounds, specialties, and teaching approach</p></Fade>
             </div>
