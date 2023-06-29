@@ -1,5 +1,5 @@
 # Light & Shadow
-Light & Shadow-hasanisokay created by GitHub Classroom
+..
     	<h1>Live link [Click](https://light-and-shadow-8f8dc.web.app/)</h1>
     <h3>Features </h3>
     <ul>
